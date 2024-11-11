@@ -1,0 +1,49 @@
+{
+	"name": "Persistent Page Identifiers",
+
+	"version": "0.0.0",
+
+	"author": [
+		"[https://Professional.Wiki/ Professional.Wiki]"
+	],
+
+	"license-name": "GPL-2.0-or-later",
+
+	"url": "https://professional.wiki/en/extension/persistent-page-identifiers",
+
+	"descriptionmsg": "persistentpageidentifiers-description",
+
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+
+	"MessagesDirs": {
+		"PersistentPageIdentifiers": [
+			"i18n"
+		]
+	},
+
+	"AutoloadNamespaces": {
+		"ProfessionalWiki\\PersistentPageIdentifiers\\": "src/",
+		"ProfessionalWiki\\PersistentPageIdentifiers\\Tests\\": "tests/"
+	},
+
+	"Hooks": {
+	},
+
+	"config": {
+	},
+
+	"ResourceFileModulePaths": {
+		"localBasePath": "resources",
+		"remoteExtPath": "PersistentPageIdentifiers/resources"
+	},
+
+	"ResourceModules": {
+	},
+
+	"RestRoutes": [
+	],
+
+	"manifest_version": 2
+}

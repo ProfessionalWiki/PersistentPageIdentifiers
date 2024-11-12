@@ -8,5 +8,7 @@
 		]
 	},
 	"persistentpageidentifiers-name": "{{Name}}",
-	"persistentpageidentifiers-description": "{{Desc|name=PersistentPageIdentifiers|url=https://github.com/ProfessionalWiki/PersistentPageIdentifiers}}"
+	"persistentpageidentifiers-description": "{{Desc|name=PersistentPageIdentifiers|url=https://github.com/ProfessionalWiki/PersistentPageIdentifiers}}",
+
+	"persistentpageidentifiers-info-label": "Persistent page identifier label on action=info page"
 }

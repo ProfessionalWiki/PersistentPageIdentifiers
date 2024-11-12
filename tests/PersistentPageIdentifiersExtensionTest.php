@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\tests;
+namespace ProfessionalWiki\Tests;
 
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;

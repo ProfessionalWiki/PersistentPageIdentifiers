@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
+use DatabaseUpdater;
 use IContextSource;
 
 class PersistentPageIdentifiersHooks {
@@ -13,6 +14,13 @@ class PersistentPageIdentifiersHooks {
 			$context->msg( 'persistentpageidentifiers-info-label' ),
 			'TODO'
 		];
+	}
+
+	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ): void {
+		$updater->addExtensionTable(
+			'persistent_page_ids',
+			__DIR__ . '/../../sql/persistent_page_ids.sql'
+		);
 	}
 
 }

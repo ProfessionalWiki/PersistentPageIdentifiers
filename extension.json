@@ -31,7 +31,8 @@
 	},
 
 	"Hooks": {
-		"InfoAction": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onInfoAction"
+		"InfoAction": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onInfoAction",
+		"LoadExtensionSchemaUpdates": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onLoadExtensionSchemaUpdates"
 	},
 
 	"config": {

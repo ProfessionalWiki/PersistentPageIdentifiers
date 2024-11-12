@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\Tests;
+namespace ProfessionalWiki\PersistentPageIdentifiers\Tests\Maintenance;
 
 use MediaWiki\Tests\Maintenance\MaintenanceBaseTestCase;
 use ProfessionalWiki\PersistentPageIdentifiers\Maintenance\GenerateMissingIdentifiers;

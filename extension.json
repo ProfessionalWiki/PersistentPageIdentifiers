@@ -1,5 +1,6 @@
 {
-	"name": "Persistent Page Identifiers",
+	"name": "PersistentPageIdentifiers",
+	"namemsg": "persistentpageidentifiers-name",
 
 	"version": "0.0.0",
 

@@ -7,5 +7,6 @@
 			"Waseem Abbas"
 		]
 	},
+	"persistentpageidentifiers-name": "{{Name}}",
 	"persistentpageidentifiers-description": "{{Desc|name=PersistentPageIdentifiers|url=https://github.com/ProfessionalWiki/PersistentPageIdentifiers}}"
 }

@@ -4,8 +4,12 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers;
 
+use MediaWiki\MediaWikiServices;
+use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
+use Wikimedia\Rdbms\IDatabase;
 
 class PersistentPageIdentifiersExtension {
 
@@ -18,6 +22,16 @@ class PersistentPageIdentifiersExtension {
 
 	public function getIdGenerator(): IdGenerator {
 		return new UuidGenerator();
+	}
+
+	public function getPersistentPageIdentifiersRepo(): PersistentPageIdentifiersRepo {
+		return new DatabasePersistentPageIdentifiersRepo(
+			$this->getDatabase()
+		);
+	}
+
+	private function getDatabase(): IDatabase {
+		return MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 	}
 
 }

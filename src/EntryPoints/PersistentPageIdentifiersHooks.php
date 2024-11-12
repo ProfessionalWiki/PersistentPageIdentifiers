@@ -6,6 +6,8 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
 use DatabaseUpdater;
 use IContextSource;
+use Parser;
+use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
 
 class PersistentPageIdentifiersHooks {
 
@@ -20,6 +22,13 @@ class PersistentPageIdentifiersHooks {
 		$updater->addExtensionTable(
 			'persistent_page_ids',
 			__DIR__ . '/../../sql/persistent_page_ids.sql'
+		);
+	}
+
+	public static function onParserFirstCallInit( Parser $parser ): void {
+		$parser->setFunctionHook(
+			'ppid',
+			PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFunction()->handleParserFunctionCall( ... )
 		);
 	}
 

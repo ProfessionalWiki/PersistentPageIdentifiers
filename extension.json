@@ -32,7 +32,8 @@
 
 	"Hooks": {
 		"InfoAction": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onInfoAction",
-		"LoadExtensionSchemaUpdates": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onLoadExtensionSchemaUpdates"
+		"LoadExtensionSchemaUpdates": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onLoadExtensionSchemaUpdates",
+		"ParserFirstCallInit": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onParserFirstCallInit"
 	},
 
 	"config": {
@@ -48,6 +49,10 @@
 
 	"RestRoutes": [
 	],
+
+	"ExtensionMessagesFiles": {
+		"PersistentPageIdentifiersMagic": "i18n/Magic/MagicWords.php"
+	},
 
 	"manifest_version": 2
 }

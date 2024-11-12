@@ -1,6 +1,6 @@
 .PHONY: ci test cs phpunit phpcs stan
 
-ci: test cs
+ci: test cs parser
 test: phpunit
 cs: phpcs stan
 
@@ -25,3 +25,6 @@ stan-baseline:
 
 lint-docker:
 	docker run -it --rm -v "$(CURDIR)":/home/node/app -w /home/node/app -u node node:20 npm install && npm run lint
+
+parser:
+	php ../../tests/parser/parserTests.php --changetree "null" --file tests/parser/*

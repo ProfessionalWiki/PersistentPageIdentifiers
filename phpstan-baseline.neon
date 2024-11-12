@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks\:\:onInfoAction\(\) has parameter \$pageInfo with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/EntryPoints/PersistentPageIdentifiersHooks.php

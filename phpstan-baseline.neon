@@ -1,7 +1,25 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\Adapters\\DatabasePersistentPageIdentifiersRepo\:\:getPersistentId\(\) should return string\|null but returns mixed\.$#'
+			identifier: return.type
+			count: 1
+			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
+
+		-
+			message: '#^Parameter \#2 \$rows of method Wikimedia\\Rdbms\\IDatabase\:\:insert\(\) expects array\<array\>, array\<string, int\|string\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
+
+		-
 			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks\:\:onInfoAction\(\) has parameter \$pageInfo with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
 			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
+
+		-
+			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\PersistentPageIdentifiersExtension\:\:getDatabase\(\) should return Wikimedia\\Rdbms\\IDatabase but returns Wikimedia\\Rdbms\\IDatabase\|false\.$#'
+			identifier: return.type
+			count: 1
+			path: src/PersistentPageIdentifiersExtension.php

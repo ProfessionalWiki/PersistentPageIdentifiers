@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\Tests;
+namespace ProfessionalWiki\PersistentPageIdentifiers\Tests\Infrastructure;
 
 use PHPUnit\Framework\TestCase;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;

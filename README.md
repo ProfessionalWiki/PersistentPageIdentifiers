@@ -12,3 +12,10 @@ To generate persistent identifiers for pages without them, you can run the maint
 ```bash
 php maintenance/GenerateMissingIdentifiers.php
 ```
+
+## Use or display persistent page id
+
+Use the `ppid` parser function:
+```
+{{#ppid:}}
+```

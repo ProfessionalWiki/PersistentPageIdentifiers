@@ -4,6 +4,9 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers;
 
+use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
+use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
+
 class PersistentPageIdentifiersExtension {
 
 	public static function getInstance(): self {
@@ -11,6 +14,10 @@ class PersistentPageIdentifiersExtension {
 		static $instance = null;
 		$instance ??= new self();
 		return $instance;
+	}
+
+	public function getIdGenerator(): IdGenerator {
+		return new UuidGenerator();
 	}
 
 }

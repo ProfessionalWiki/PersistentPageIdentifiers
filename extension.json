@@ -26,7 +26,8 @@
 
 	"AutoloadNamespaces": {
 		"ProfessionalWiki\\PersistentPageIdentifiers\\": "src/",
-		"ProfessionalWiki\\PersistentPageIdentifiers\\Tests\\": "tests/"
+		"ProfessionalWiki\\PersistentPageIdentifiers\\Tests\\": "tests/",
+		"ProfessionalWiki\\PersistentPageIdentifiers\\Maintenance\\": "maintenance/"
 	},
 
 	"Hooks": {

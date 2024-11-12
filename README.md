@@ -5,3 +5,10 @@
 [![Psalm level](https://shepherd.dev/github/ProfessionalWiki/PersistentPageIdentifiers/level.svg)](psalm.xml)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/persistent-page-identifiers/v/stable)](https://packagist.org/packages/professional-wiki/persistent-page-identifiers)
 [![Download count](https://poser.pugx.org/professional-wiki/persistent-page-identifiers/downloads)](https://packagist.org/packages/professional-wiki/persistent-page-identifiers)
+
+## Generate missing persistent identifiers for pages
+
+To generate persistent identifiers for pages without them, you can run the maintenance script:
+```bash
+php maintenance/GenerateMissingIdentifiers.php
+```

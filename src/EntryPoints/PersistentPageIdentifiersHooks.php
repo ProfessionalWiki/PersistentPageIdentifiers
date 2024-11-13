@@ -14,7 +14,9 @@ class PersistentPageIdentifiersHooks {
 	public static function onInfoAction( IContextSource $context, array &$pageInfo ): void {
 		$pageInfo['header-basic'][] = [
 			$context->msg( 'persistentpageidentifiers-info-label' ),
-			'TODO'
+			PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->getPersistentId(
+				$context->getWikiPage()->getId()
+			)
 		];
 	}
 

@@ -37,7 +37,9 @@ class PersistentPageIdentifiersExtension {
 	}
 
 	public function newPersistentPageIdFunction(): PersistentPageIdFunction {
-		return new PersistentPageIdFunction();
+		return new PersistentPageIdFunction(
+			$this->getPersistentPageIdentifiersRepo()
+		);
 	}
 
 	public function newCreatePersistentPageIdentifier(): CreatePersistentPageIdentifier {

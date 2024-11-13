@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\Adapters;
 
+use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use Wikimedia\Rdbms\IDatabase;
 
 class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiersRepo {

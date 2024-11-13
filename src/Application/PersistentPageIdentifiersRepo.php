@@ -2,7 +2,7 @@
 
 declare( strict_types = 1 );
 
-namespace ProfessionalWiki\PersistentPageIdentifiers\Adapters;
+namespace ProfessionalWiki\PersistentPageIdentifiers\Application;
 
 interface PersistentPageIdentifiersRepo {
 

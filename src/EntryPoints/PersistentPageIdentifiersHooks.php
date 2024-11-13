@@ -6,8 +6,12 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
 use DatabaseUpdater;
 use IContextSource;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\User\UserIdentity;
 use Parser;
 use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
+use WikiPage;
 
 class PersistentPageIdentifiersHooks {
 
@@ -32,6 +36,21 @@ class PersistentPageIdentifiersHooks {
 			'ppid',
 			PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFunction()->handleParserFunctionCall( ... )
 		);
+	}
+
+	public static function onPageSaveComplete(
+		WikiPage $wikiPage,
+		UserIdentity $user,
+		string $summary,
+		int $flags,
+		RevisionRecord $revisionRecord,
+		EditResult $editResult
+	): void {
+		if ( !$editResult->isNew() ) {
+			return;
+		}
+
+		PersistentPageIdentifiersExtension::getInstance()->newCreatePersistentPageIdentifier()->createId( $wikiPage->getId() );
 	}
 
 }

@@ -33,7 +33,8 @@
 	"Hooks": {
 		"InfoAction": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onInfoAction",
 		"LoadExtensionSchemaUpdates": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onLoadExtensionSchemaUpdates",
-		"ParserFirstCallInit": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onParserFirstCallInit"
+		"ParserFirstCallInit": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onParserFirstCallInit",
+		"PageSaveComplete": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onPageSaveComplete"
 	},
 
 	"config": {

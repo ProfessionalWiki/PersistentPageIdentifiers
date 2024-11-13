@@ -5,6 +5,7 @@ declare( strict_types = 1 );
 namespace ProfessionalWiki\PersistentPageIdentifiers\Maintenance;
 
 use Maintenance;
+use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
 
 $basePath = getenv( 'MW_INSTALL_PATH' ) !== false ? getenv( 'MW_INSTALL_PATH' ) : __DIR__ . '/../../..';
 
@@ -20,7 +21,27 @@ class GenerateMissingIdentifiers extends Maintenance {
 	}
 
 	public function execute(): void {
-		$this->output( 'TODO' );
+		$pageIds = PersistentPageIdentifiersExtension::getInstance()->getPageIdsRepo()
+			->getPageIdsOfPagesWithoutPersistentIds();
+
+		foreach ( $pageIds as $pageId ) {
+			$this->savePersistentId( intval( $pageId ), $this->generatePersistentId() );
+		}
+
+		$pageIdsCount = count( $pageIds );
+
+		$this->output( "Created $pageIdsCount persistent IDs\n" );
+	}
+
+	private function generatePersistentId(): string {
+		return PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate();
+	}
+
+	private function savePersistentId( int $pageId, string $persistentId ): void {
+		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentId(
+			$pageId,
+			$persistentId
+		);
 	}
 
 }

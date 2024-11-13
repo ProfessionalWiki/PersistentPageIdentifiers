@@ -6,7 +6,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\Tests\Adapters;
 
 use MediaWikiIntegrationTestCase;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
-use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use Wikimedia\Rdbms\DBQueryError;
 
 /**

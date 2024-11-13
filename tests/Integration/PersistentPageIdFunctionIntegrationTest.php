@@ -48,7 +48,7 @@ HTML
 	}
 
 	public function testParserFunctionReturnsNothingForPageWithoutPersistentId(): void {
-		$this->clearHook( 'PageSaveComplete' );
+		$this->disablePageSaveHook();
 
 		$page = $this->createPageWithText();
 		$this->editPage( $page, '{{#ppid:}}' );

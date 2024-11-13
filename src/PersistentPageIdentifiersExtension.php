@@ -6,6 +6,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers;
 
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PageIdsRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
@@ -46,6 +47,12 @@ class PersistentPageIdentifiersExtension {
 	public function newPersistentPageIdFormatter(): PersistentPageIdFormatter {
 		return new PersistentPageIdFormatter(
 			MediaWikiServices::getInstance()->getMainConfig()->get( 'PersistentPageIdentifiersFormat' )
+		);
+	}
+
+	public function getPageIdsRepo(): PageIdsRepo {
+		return new PageIdsRepo(
+			$this->getDatabase()
 		);
 	}
 

@@ -39,12 +39,12 @@ class PageSaveIntegrationTest extends PersistentPageIdentifiersIntegrationTest {
 	}
 
 	public function testExistingPageDoesNotGetPersistentId(): void {
-		$this->clearHook( 'PageSaveComplete' );
+		$this->disablePageSaveHook();
 		$page = $this->createPageWithText();
 
 		$this->assertNull( $this->repo->getPersistentId( $page->getId() ) );
 
-		$this->setTemporaryHook( 'PageSaveComplete', [ PersistentPageIdentifiersHooks::class, 'onPageSaveComplete' ] );
+		$this->enablePageSaveHook();
 		$this->editPage( $page, 'Updated' );
 
 		$this->assertNull( $this->repo->getPersistentId( $page->getId() ) );

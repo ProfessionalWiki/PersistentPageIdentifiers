@@ -9,6 +9,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\Maintenance\GenerateMissingIdenti
 
 /**
  * @covers \ProfessionalWiki\PersistentPageIdentifiers\Maintenance\GenerateMissingIdentifiers
+ * @group Database
  */
 class GenerateMissingIdentifiersTest extends MaintenanceBaseTestCase {
 
@@ -20,7 +21,7 @@ class GenerateMissingIdentifiersTest extends MaintenanceBaseTestCase {
 	public function testRuns() {
 		$this->maintenance->execute();
 
-		$this->expectOutputRegex( '/TODO/' );
+		$this->expectOutputRegex( '/Created/' );
 	}
 
 }

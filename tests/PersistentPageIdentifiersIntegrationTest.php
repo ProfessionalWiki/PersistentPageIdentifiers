@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\Tests;
 
+use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdentifiersHooks;
 use Title;
 use WikiPage;
 
@@ -20,6 +21,14 @@ class PersistentPageIdentifiersIntegrationTest extends \MediaWikiIntegrationTest
 	private function createUniqueTitle(): Title {
 		static $pageCounter = 0;
 		return Title::newFromText( 'PPITestPage' . ++$pageCounter );
+	}
+
+	protected function disablePageSaveHook(): void {
+		$this->clearHook( 'PageSaveComplete' );
+	}
+
+	protected function enablePageSaveHook(): void {
+		$this->setTemporaryHook( 'PageSaveComplete', [ PersistentPageIdentifiersHooks::class, 'onPageSaveComplete' ] );
 	}
 
 }

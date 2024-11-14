@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
+use ApiBase;
 use DatabaseUpdater;
 use IContextSource;
 use MediaWiki\Revision\RevisionRecord;
@@ -59,6 +60,25 @@ class PersistentPageIdentifiersHooks {
 		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds(
 			[ $wikiPage->getId() => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate() ]
 		);
+	}
+
+	public static function onAPIQueryAfterExecute( ApiBase $module ): void {
+		if ( !( $module instanceof \ApiQueryInfo ) ) {
+			return;
+		}
+
+		$repo = PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo();
+
+		foreach ( $module->getResult()->getResultData( [ 'query', 'pages' ] ) as $page ) {
+			if ( !isset( $page['pageid'] ) ) {
+				continue;
+			}
+			$module->getResult()->addValue(
+				[ 'query', 'pages', intval( $page['pageid'] ) ],
+				'persistentpageid',
+				$repo->getPersistentId( intval( $page['pageid'] ) )
+			);
+		}
 	}
 
 }

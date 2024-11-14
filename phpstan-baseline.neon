@@ -13,9 +13,27 @@ parameters:
 			path: src/EntryPoints/PersistentPageIdFunction.php
 
 		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 1
+			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
+
+		-
+			message: '#^Cannot access offset ''pageid'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
+
+		-
 			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks\:\:onInfoAction\(\) has parameter \$pageInfo with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
+			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
+
+		-
+			message: '#^Parameter \#1 \$value of function intval expects array\|bool\|float\|int\|resource\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 2
 			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
 
 		-

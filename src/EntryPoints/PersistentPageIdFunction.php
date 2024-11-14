@@ -7,12 +7,14 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 use MediaWiki\Page\PageReference;
 use Parser;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Title;
 
 class PersistentPageIdFunction {
 
 	public function __construct(
-		private readonly PersistentPageIdentifiersRepo $repo
+		private readonly PersistentPageIdentifiersRepo $repo,
+		private readonly PersistentPageIdFormatter $idFormatter,
 	) {
 	}
 
@@ -27,14 +29,14 @@ class PersistentPageIdFunction {
 		}
 
 		return [
-			$this->repo->getPersistentId( $this->getPageId( $page ) ) ?? '',
+			$this->idFormatter->format( $this->getPersistentIdForPage( $page ) ),
 			'noparse' => true,
 			'isHTML' => false,
 		];
 	}
 
-	private function getPageId( PageReference $page ): int {
-		return Title::castFromPageReference( $page )->getArticleID();
+	private function getPersistentIdForPage( PageReference $page ): ?string {
+		return $this->repo->getPersistentId( Title::castFromPageReference( $page )->getArticleID() );
 	}
 
 }

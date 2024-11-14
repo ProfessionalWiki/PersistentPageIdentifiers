@@ -38,6 +38,10 @@
 	},
 
 	"config": {
+		"PersistentPageIdentifiersFormat": {
+			"description": "The format to use when displaying persistent page identifiers. '$1' will be replaced with the actual identifier.",
+			"value": "$1"
+		}
 	},
 
 	"ResourceFileModulePaths": {

@@ -13,7 +13,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdForm
 class PersistentPageIdFormatterTest extends TestCase {
 
 	public function testReturnsEmptyStringForNullId(): void {
-		$formatter = new PersistentPageIdFormatter( '$1' );
+		$formatter = new PersistentPageIdFormatter( 'foo $1 bar' );
 		$this->assertSame( '', $formatter->format( null ) );
 	}
 

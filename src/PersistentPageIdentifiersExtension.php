@@ -7,7 +7,6 @@ namespace ProfessionalWiki\PersistentPageIdentifiers;
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
-use ProfessionalWiki\PersistentPageIdentifiers\Application\UseCases\CreatePersistentPageIdentifier;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
@@ -39,13 +38,6 @@ class PersistentPageIdentifiersExtension {
 	public function newPersistentPageIdFunction(): PersistentPageIdFunction {
 		return new PersistentPageIdFunction(
 			$this->getPersistentPageIdentifiersRepo()
-		);
-	}
-
-	public function newCreatePersistentPageIdentifier(): CreatePersistentPageIdentifier {
-		return new CreatePersistentPageIdentifier(
-			$this->getPersistentPageIdentifiersRepo(),
-			$this->getIdGenerator()
 		);
 	}
 

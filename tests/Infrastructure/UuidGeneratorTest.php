@@ -13,7 +13,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
 class UuidGeneratorTest extends TestCase {
 
 	public function testGeneratesValidUuid7(): void {
-		$this->assertRegExp(
+		$this->assertMatchesRegularExpression(
 			'/^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/',
 			( new UuidGenerator() )->generate()
 		);

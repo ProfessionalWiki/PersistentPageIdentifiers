@@ -50,7 +50,10 @@ class PersistentPageIdentifiersHooks {
 			return;
 		}
 
-		PersistentPageIdentifiersExtension::getInstance()->newCreatePersistentPageIdentifier()->createId( $wikiPage->getId() );
+		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentId(
+			$wikiPage->getId(),
+			PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate()
+		);
 	}
 
 }

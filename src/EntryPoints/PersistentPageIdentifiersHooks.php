@@ -18,10 +18,16 @@ class PersistentPageIdentifiersHooks {
 	public static function onInfoAction( IContextSource $context, array &$pageInfo ): void {
 		$pageInfo['header-basic'][] = [
 			$context->msg( 'persistentpageidentifiers-info-label' ),
-			PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->getPersistentId(
-				$context->getWikiPage()->getId()
+			PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFormatter()->format(
+				self::getPersistentIdForPage( $context->getWikiPage() )
 			)
 		];
+	}
+
+	private static function getPersistentIdForPage( WikiPage $page ): ?string {
+		return PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->getPersistentId(
+			$page->getId()
+		);
 	}
 
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ): void {

@@ -10,6 +10,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentif
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
+use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Wikimedia\Rdbms\IDatabase;
 
 class PersistentPageIdentifiersExtension {
@@ -37,7 +38,14 @@ class PersistentPageIdentifiersExtension {
 
 	public function newPersistentPageIdFunction(): PersistentPageIdFunction {
 		return new PersistentPageIdFunction(
-			$this->getPersistentPageIdentifiersRepo()
+			$this->getPersistentPageIdentifiersRepo(),
+			$this->newPersistentPageIdFormatter()
+		);
+	}
+
+	public function newPersistentPageIdFormatter(): PersistentPageIdFormatter {
+		return new PersistentPageIdFormatter(
+			MediaWikiServices::getInstance()->getMainConfig()->get( 'PersistentPageIdentifiersFormat' )
 		);
 	}
 

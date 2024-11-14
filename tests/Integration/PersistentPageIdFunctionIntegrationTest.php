@@ -4,9 +4,11 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\Tests\Integration;
 
+use ParserOutput;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Tests\PersistentPageIdentifiersIntegrationTest;
+use WikiPage;
 
 /**
  * @covers \ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction
@@ -20,6 +22,7 @@ class PersistentPageIdFunctionIntegrationTest extends PersistentPageIdentifiersI
 		parent::setUp();
 		$this->tablesUsed[] = 'persistent_page_ids';
 		$this->repo = new DatabasePersistentPageIdentifiersRepo( $this->db );
+		$this->overrideConfigValue( 'PersistentPageIdentifiersFormat', '$1' );
 	}
 
 	public function testParserFunctionReturnsPersistentId(): void {
@@ -27,12 +30,19 @@ class PersistentPageIdFunctionIntegrationTest extends PersistentPageIdentifiersI
 		$this->editPage( $page, '{{#ppid:}}' );
 		$id = $this->repo->getPersistentId( $page->getId() );
 
-		$this->assertSame(
+		$this->assertPageContentIs(
 			<<<HTML
 <p>$id
 </p>
 HTML
 			,
+			$page
+		);
+	}
+
+	private function assertPageContentIs( string $expected, WikiPage $page ): void {
+		$this->assertSame(
+			$expected,
 			$page->getParserOutput()->getText( [ 'unwrap' => true ] )
 		);
 	}
@@ -43,9 +53,26 @@ HTML
 		$page = $this->createPageWithText();
 		$this->editPage( $page, '{{#ppid:}}' );
 
-		$this->assertSame(
+		$this->assertPageContentIs(
 			'',
-			$page->getParserOutput()->getText( [ 'unwrap' => true ] )
+			$page
+		);
+	}
+
+	public function testParserFunctionReturnsPersistentIdWithCustomFormat(): void {
+		$this->overrideConfigValue( 'PersistentPageIdentifiersFormat', 'foo/$1/bar' );
+
+		$page = $this->createPageWithText();
+		$this->editPage( $page, '{{#ppid:}}' );
+		$id = $this->repo->getPersistentId( $page->getId() );
+
+		$this->assertPageContentIs(
+			<<<HTML
+<p>foo/$id/bar
+</p>
+HTML
+			,
+			$page
 		);
 	}
 

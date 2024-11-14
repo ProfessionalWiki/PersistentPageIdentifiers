@@ -29,3 +29,9 @@ parameters:
 			identifier: return.type
 			count: 1
 			path: src/PersistentPageIdentifiersExtension.php
+
+		-
+			message: '#^Parameter \#1 \$format of class ProfessionalWiki\\PersistentPageIdentifiers\\Presentation\\PersistentPageIdFormatter constructor expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/PersistentPageIdentifiersExtension.php

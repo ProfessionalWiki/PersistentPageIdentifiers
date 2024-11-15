@@ -7,7 +7,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\Tests\Adapters;
 use MediaWikiIntegrationTestCase;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
-use Wikimedia\Rdbms\DBQueryError;
+use Wikimedia\Rdbms\DBError;
 
 /**
  * @covers \ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo
@@ -17,6 +17,7 @@ class DatabasePersistentPageIdentifiersRepoTest extends MediaWikiIntegrationTest
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'persistent_page_ids';
 	}
 
@@ -35,29 +36,29 @@ class DatabasePersistentPageIdentifiersRepoTest extends MediaWikiIntegrationTest
 		$pageId = 42;
 		$persistentId = '00000000-0000-0000-0000-000000000042';
 
-		$repo->savePersistentId( $pageId, $persistentId );
+		$repo->savePersistentIds( [ $pageId => $persistentId ] );
 
 		$this->assertSame( $persistentId, $repo->getPersistentId( $pageId ) );
 	}
 
 	public function testSetPersistentIdThrowsExceptionOnDuplicatePageId(): void {
 		$repo = $this->newRepo();
-		$pageId = 1;
+		$pageId = 100;
 
-		$repo->savePersistentId( $pageId, '00000000-0000-0000-0000-000000000010' );
+		$repo->savePersistentIds( [ $pageId => '00000000-0000-0000-0000-000000000010' ] );
 
-		$this->expectException( DBQueryError::class );
-		$repo->savePersistentId( $pageId, '00000000-0000-0000-0000-000000000020' );
+		$this->expectException( DBError::class );
+		$repo->savePersistentIds( [ $pageId => '00000000-0000-0000-0000-000000000020' ] );
 	}
 
 	public function testSetPersistentIdThrowsExceptionOnDuplicatePersistentId(): void {
 		$repo = $this->newRepo();
 		$persistentId = '00000000-0000-0000-0000-000000000001';
 
-		$repo->savePersistentId( 1, $persistentId );
+		$repo->savePersistentIds( [ 100 => $persistentId ] );
 
-		$this->expectException( DBQueryError::class );
-		$repo->savePersistentId( 2, $persistentId );
+		$this->expectException( DBError::class );
+		$repo->savePersistentIds( [ 200 => $persistentId ] );
 	}
 
 }

@@ -23,14 +23,14 @@ class PageIdsRepoTest extends PersistentPageIdentifiersIntegrationTest {
 	}
 
 	public function testReturnsAnEmptyArrayWhenThereAreNoPages(): void {
-		$this->assertSame( [], $this->repo->getPageIdsOfPagesWithoutPersistentIds() );
+		$this->assertSame( [], $this->repo->getPageIdsOfPagesWithoutPersistentIds( limit: 100 ) );
 	}
 
 	public function testReturnsAnEmptyArrayWhenThereAreNoPagesWithPersistentIds(): void {
 		$this->createPageWithText();
 		$this->createPageWithText();
 
-		$this->assertSame( [], $this->repo->getPageIdsOfPagesWithoutPersistentIds() );
+		$this->assertSame( [], $this->repo->getPageIdsOfPagesWithoutPersistentIds( limit: 100 ) );
 	}
 
 	public function testReturnsPageIdsForPagesWithoutPersistentIds(): void {
@@ -39,8 +39,8 @@ class PageIdsRepoTest extends PersistentPageIdentifiersIntegrationTest {
 		$page2 = $this->createPageWithText();
 
 		$this->assertSame(
-			[ (string)$page1->getId(), (string)$page2->getId() ],
-			$this->repo->getPageIdsOfPagesWithoutPersistentIds()
+			[ $page1->getId(), $page2->getId() ],
+			$this->repo->getPageIdsOfPagesWithoutPersistentIds( limit: 100 )
 		);
 	}
 
@@ -54,8 +54,20 @@ class PageIdsRepoTest extends PersistentPageIdentifiersIntegrationTest {
 		$this->createPageWithText();
 
 		$this->assertSame(
-			[ (string)$page1->getId(), (string)$page2->getId() ],
-			$this->repo->getPageIdsOfPagesWithoutPersistentIds()
+			[ $page1->getId(), $page2->getId() ],
+			$this->repo->getPageIdsOfPagesWithoutPersistentIds( limit: 100 )
+		);
+	}
+
+	public function testReturnsPageIdsForPagesWithoutPersistentIdsUpToLimit(): void {
+		$this->disablePageSaveHook();
+		$page1 = $this->createPageWithText();
+		$this->createPageWithText();
+		$this->createPageWithText();
+
+		$this->assertSame(
+			[ $page1->getId() ],
+			$this->repo->getPageIdsOfPagesWithoutPersistentIds( limit: 1 )
 		);
 	}
 

@@ -7,12 +7,6 @@ parameters:
 			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
 
 		-
-			message: '#^Parameter \#2 \$rows of method Wikimedia\\Rdbms\\IDatabase\:\:insert\(\) expects array\<array\>, array\<string, int\|string\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
-
-		-
 			message: '#^Cannot call method getArticleID\(\) on Title\|null\.$#'
 			identifier: method.nonObject
 			count: 1

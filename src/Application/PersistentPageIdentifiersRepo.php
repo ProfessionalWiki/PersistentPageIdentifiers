@@ -6,7 +6,10 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\Application;
 
 interface PersistentPageIdentifiersRepo {
 
-	public function savePersistentId( int $pageId, string $persistentId ): void;
+	/**
+	 * @param array<int, string> $ids
+	 */
+	public function savePersistentIds( array $ids ): void;
 
 	public function getPersistentId( int $pageId ): ?string;
 

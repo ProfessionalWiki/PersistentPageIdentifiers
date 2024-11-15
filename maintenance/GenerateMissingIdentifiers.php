@@ -21,26 +21,48 @@ class GenerateMissingIdentifiers extends Maintenance {
 	}
 
 	public function execute(): void {
-		$pageIds = PersistentPageIdentifiersExtension::getInstance()->getPageIdsRepo()
-			->getPageIdsOfPagesWithoutPersistentIds();
+		$generatedIdsCount = 0;
 
-		foreach ( $pageIds as $pageId ) {
-			$this->savePersistentId( intval( $pageId ), $this->generatePersistentId() );
+		while ( true ) {
+			$pageIds = $this->getNextBatchOfPageIdsForPagesWithoutPersistentIds();
+			$batchCount = count( $pageIds );
+
+			if ( $batchCount === 0 ) {
+				break;
+			}
+
+			$this->output( "Generating persistent ids for batch of $batchCount pages\n" );
+
+			$this->savePersistentIds( $pageIds, $this->generatePersistentIds( $batchCount ) );
+
+			$generatedIdsCount += $batchCount;
 		}
 
-		$pageIdsCount = count( $pageIds );
-
-		$this->output( "Created $pageIdsCount persistent IDs\n" );
+		$this->output( "Generated $generatedIdsCount persistent IDs\n" );
 	}
 
-	private function generatePersistentId(): string {
-		return PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate();
+	/**
+	 * @return int[]
+	 */
+	private function getNextBatchOfPageIdsForPagesWithoutPersistentIds(): array {
+		return PersistentPageIdentifiersExtension::getInstance()->getPageIdsRepo()
+			->getPageIdsOfPagesWithoutPersistentIds( limit: 100 );
 	}
 
-	private function savePersistentId( int $pageId, string $persistentId ): void {
-		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentId(
-			$pageId,
-			$persistentId
+	/**
+	 * @param int $count
+	 * @return string[]
+	 */
+	private function generatePersistentIds( int $count ): array {
+		return array_map(
+			fn() => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate(),
+			range( 1, $count )
+		);
+	}
+
+	private function savePersistentIds( array $pageIds, array $persistentIds ): void {
+		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds(
+			array_combine( $pageIds, $persistentIds )
 		);
 	}
 

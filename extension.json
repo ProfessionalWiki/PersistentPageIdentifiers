@@ -34,7 +34,8 @@
 		"InfoAction": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onInfoAction",
 		"LoadExtensionSchemaUpdates": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onLoadExtensionSchemaUpdates",
 		"ParserFirstCallInit": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onParserFirstCallInit",
-		"PageSaveComplete": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onPageSaveComplete"
+		"PageSaveComplete": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onPageSaveComplete",
+		"RevisionUndeleted": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\PersistentPageIdentifiersHooks::onRevisionUndeleted"
 	},
 
 	"config": {

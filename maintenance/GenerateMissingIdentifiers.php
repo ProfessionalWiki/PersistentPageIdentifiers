@@ -25,17 +25,17 @@ class GenerateMissingIdentifiers extends Maintenance {
 
 		while ( true ) {
 			$pageIds = $this->getNextBatchOfPageIdsForPagesWithoutPersistentIds();
-			$batchCount = count( $pageIds );
+			$batchSize = count( $pageIds );
 
-			if ( $batchCount === 0 ) {
+			if ( $batchSize === 0 ) {
 				break;
 			}
 
-			$this->output( "Generating persistent ids for batch of $batchCount pages\n" );
+			$this->output( "Generating persistent ids for batch of $batchSize pages\n" );
 
-			$this->savePersistentIds( $pageIds, $this->generatePersistentIds( $batchCount ) );
+			$this->savePersistentIds( $pageIds, $this->generateBulkPersistentIds( $batchSize ) );
 
-			$generatedIdsCount += $batchCount;
+			$generatedIdsCount += $batchSize;
 		}
 
 		$this->output( "Generated $generatedIdsCount persistent IDs\n" );
@@ -46,14 +46,14 @@ class GenerateMissingIdentifiers extends Maintenance {
 	 */
 	private function getNextBatchOfPageIdsForPagesWithoutPersistentIds(): array {
 		return PersistentPageIdentifiersExtension::getInstance()->getPageIdsRepo()
-			->getPageIdsOfPagesWithoutPersistentIds( limit: 100 );
+			->getPageIdsOfPagesWithoutPersistentIds( limit: 1000 );
 	}
 
 	/**
 	 * @param int $count
 	 * @return string[]
 	 */
-	private function generatePersistentIds( int $count ): array {
+	private function generateBulkPersistentIds( int $count ): array {
 		return array_map(
 			fn() => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate(),
 			range( 1, $count )

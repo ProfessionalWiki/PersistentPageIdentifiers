@@ -10,7 +10,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdentif
 use ProfessionalWiki\PersistentPageIdentifiers\Tests\PersistentPageIdentifiersIntegrationTest;
 
 /**
- * @covers \ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdentifiersHooks::onPageSaveComplete
+ * @covers \ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdentifiersHooks::onRevisionFromEditComplete
  * @group Database
  */
 class PageSaveIntegrationTest extends PersistentPageIdentifiersIntegrationTest {

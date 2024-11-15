@@ -4,13 +4,20 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
+use CommentStoreComment;
 use DatabaseUpdater;
 use IContextSource;
+use MediaWiki\Deferred\DeferredUpdates;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use Parser;
 use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
+use StripState;
 use WikiPage;
 
 class PersistentPageIdentifiersHooks {
@@ -42,24 +49,27 @@ class PersistentPageIdentifiersHooks {
 	public static function onParserFirstCallInit( Parser $parser ): void {
 		$parser->setFunctionHook(
 			'ppid',
-			PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFunction()->handleParserFunctionCall( ... )
+			PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFunction(
+			)->handleParserFunctionCall( ... )
 		);
 	}
 
-	public static function onPageSaveComplete(
-		WikiPage $wikiPage,
-		UserIdentity $user,
-		string $summary,
-		int $flags,
-		RevisionRecord $revisionRecord,
-		EditResult $editResult
+	public static function onRevisionFromEditComplete(
+		WikiPage $wikiPage
 	): void {
-		if ( !$editResult->isNew() ) {
+		if ( !$wikiPage->isNew() ) {
 			return;
 		}
 
-		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds(
-			[ $wikiPage->getId() => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate() ]
+		$repo = PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo();
+		$pageId = $wikiPage->getId();
+
+		if ( $repo->getPersistentId( $pageId ) !== null ) {
+			return;
+		}
+
+		$repo->savePersistentIds(
+			[ $pageId => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate() ]
 		);
 	}
 

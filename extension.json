@@ -53,6 +53,11 @@
 	},
 
 	"RestRoutes": [
+		{
+			"path": "/persistent-page-identifiers/v1/pages",
+			"method": [ "GET" ],
+			"factory": "ProfessionalWiki\\PersistentPageIdentifiers\\PersistentPageIdentifiersExtension::newGetPersistentPageIdentifiersApi"
+		}
 	],
 
 	"ExtensionMessagesFiles": {

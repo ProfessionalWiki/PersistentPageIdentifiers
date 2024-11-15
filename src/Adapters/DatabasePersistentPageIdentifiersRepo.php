@@ -14,13 +14,13 @@ class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiers
 	) {
 	}
 
-	public function savePersistentId( int $pageId, string $persistentId ): void {
+	public function savePersistentIds( array $ids ): void {
 		$this->database->insert(
 			'persistent_page_ids',
-			[
-				'page_id' => $pageId,
-				'persistent_id' => $persistentId
-			]
+			array_map(
+				fn( $pageId ) => [ 'page_id' => $pageId, 'persistent_id' => $ids[$pageId] ],
+				array_keys( $ids )
+			)
 		);
 	}
 

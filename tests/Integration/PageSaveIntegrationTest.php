@@ -19,6 +19,7 @@ class PageSaveIntegrationTest extends PersistentPageIdentifiersIntegrationTest {
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'persistent_page_ids';
 		$this->repo = new DatabasePersistentPageIdentifiersRepo( $this->db );
 	}

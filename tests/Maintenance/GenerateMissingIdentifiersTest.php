@@ -21,7 +21,7 @@ class GenerateMissingIdentifiersTest extends MaintenanceBaseTestCase {
 	public function testRuns() {
 		$this->maintenance->execute();
 
-		$this->expectOutputRegex( '/Created/' );
+		$this->expectOutputRegex( '/Generated/' );
 	}
 
 }

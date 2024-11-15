@@ -20,6 +20,7 @@ class PersistentPageIdFunctionIntegrationTest extends PersistentPageIdentifiersI
 
 	protected function setUp(): void {
 		parent::setUp();
+		$this->tablesUsed[] = 'page';
 		$this->tablesUsed[] = 'persistent_page_ids';
 		$this->repo = new DatabasePersistentPageIdentifiersRepo( $this->db );
 		$this->overrideConfigValue( 'PersistentPageIdentifiersFormat', '$1' );

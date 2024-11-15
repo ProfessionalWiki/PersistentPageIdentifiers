@@ -25,6 +25,14 @@ class PersistentPageIdentifiersIntegrationTest extends \MediaWikiIntegrationTest
 
 	protected function disablePageSaveHook(): void {
 		$this->clearHook( 'PageSaveComplete' );
+
+	}
+
+	protected function disableParserFunction(): void {
+		$parser = $this->getServiceContainer()->getParser();
+		$parser->setFunctionHook( 'ppid', static function () {
+			return [ '', 'noparse' => true ];
+		} );
 	}
 
 	protected function enablePageSaveHook(): void {

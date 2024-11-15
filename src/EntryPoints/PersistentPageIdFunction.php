@@ -31,6 +31,7 @@ class PersistentPageIdFunction {
 		}
 
 		$title = Title::castFromPageReference( $page );
+
 		$id = $this->getPersistentIdForPage( $page );
 
 		if ( $id === null && $title->exists() ) {

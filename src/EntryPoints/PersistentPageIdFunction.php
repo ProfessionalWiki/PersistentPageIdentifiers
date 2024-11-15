@@ -29,7 +29,7 @@ class PersistentPageIdFunction {
 		}
 
 		return [
-			$this->idFormatter->format( $this->getPersistentIdForPage( $page ) ),
+			htmlspecialchars( $this->idFormatter->format( $this->getPersistentIdForPage( $page ) ) ),
 			'noparse' => true,
 			'isHTML' => false,
 		];

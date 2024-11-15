@@ -22,14 +22,4 @@ class PersistentPageIdFormatterTest extends TestCase {
 		$this->assertSame( 'foo 42 bar', $formatter->format( '42' ) );
 	}
 
-	public function testEscapesHtmlInFormat(): void {
-		$formatter = new PersistentPageIdFormatter( '<strong>$1</strong>' );
-		$this->assertSame( '&lt;strong&gt;42&lt;/strong&gt;', $formatter->format( '42' ) );
-	}
-
-	public function testEscapesHtmlInId(): void {
-		$formatter = new PersistentPageIdFormatter( '$1' );
-		$this->assertSame( '&lt;strong&gt;42&lt;/strong&gt;', $formatter->format( '<strong>42</strong>' ) );
-	}
-
 }

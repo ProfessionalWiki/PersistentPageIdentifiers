@@ -16,9 +16,7 @@ class PersistentPageIdFormatter {
 			return '';
 		}
 
-		return htmlspecialchars(
-			str_replace( '$1', $persistentId, $this->format )
-		);
+		return str_replace( '$1', $persistentId, $this->format );
 	}
 
 }

@@ -4,17 +4,18 @@ declare( strict_types = 1 );
 
 namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use Parser;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Title;
+use WikiPage;
 
 class PersistentPageIdFunction {
 
 	public function __construct(
-		private readonly PersistentPageIdentifiersRepo $repo,
-		private readonly PersistentPageIdFormatter $idFormatter,
+		private readonly PersistentPageIdentifiersRepo $repo, private readonly PersistentPageIdFormatter $idFormatter,
 	) {
 	}
 

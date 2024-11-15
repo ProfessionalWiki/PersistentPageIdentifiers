@@ -24,7 +24,8 @@ class PersistentPageIdentifiersIntegrationTest extends \MediaWikiIntegrationTest
 	}
 
 	protected function disablePageSaveHook(): void {
-		$this->clearHook( 'PageSaveComplete' );
+		$this->clearHook( 'RevisionFromEditComplete' );
+
 	}
 
 	protected function enablePageSaveHook(): void {

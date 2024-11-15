@@ -28,7 +28,7 @@ class InfoActionIntegrationTest extends PersistentPageIdentifiersIntegrationTest
 	}
 
 	public function testShowsEmptyStringForPageWithoutPersistentId(): void {
-		$this->clearHook( 'PageSaveComplete' );
+		$this->clearHook( 'RevisionFromEditComplete' );
 
 		$page = $this->createPageWithText();
 

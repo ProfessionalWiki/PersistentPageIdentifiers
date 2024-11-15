@@ -6,6 +6,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\Adapters;
 
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IResultWrapper;
 
 class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiersRepo {
 
@@ -25,13 +26,37 @@ class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiers
 	}
 
 	public function getPersistentId( int $pageId ): ?string {
-		$field = $this->database->selectField(
-			'persistent_page_ids',
-			'persistent_id',
-			[ 'page_id' => $pageId ]
-		);
+		return $this->getPersistentIds( [ $pageId ] )[$pageId] ?? null;
+	}
 
-		return $field === false ? null : $field;
+	/**
+	 * @param int[] $pageIds
+	 * @return array<int, string|null>
+	 */
+	public function getPersistentIds( array $pageIds ): array {
+		$result = $this->database->newSelectQueryBuilder()
+			->select( [ 'p.page_id', 'ppi.persistent_id' ] )
+			->from( 'page', 'p' )
+			->leftJoin( 'persistent_page_ids', 'ppi', 'p.page_id = ppi.page_id' )
+			->where( [ 'p.page_id' => $pageIds ] )
+			->orderBy( 'p.page_id' )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
+		return $this->persistentIdsResultToArray( $result );
+	}
+
+	/**
+	 * @return array<int, string|null>
+	 */
+	private function persistentIdsResultToArray( IResultWrapper $result ): array {
+		$rows = [];
+
+		foreach ( $result as $row ) {
+			$rows[(int)$row->page_id] = $row->persistent_id;
+		}
+
+		return $rows;
 	}
 
 }

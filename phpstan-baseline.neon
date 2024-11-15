@@ -1,8 +1,14 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\Adapters\\DatabasePersistentPageIdentifiersRepo\:\:getPersistentId\(\) should return string\|null but returns mixed\.$#'
-			identifier: return.type
+			message: '#^Cannot access property \$page_id on array\|bool\|stdClass\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
+
+		-
+			message: '#^Cannot access property \$persistent_id on array\|bool\|stdClass\.$#'
+			identifier: property.nonObject
 			count: 1
 			path: src/Adapters/DatabasePersistentPageIdentifiersRepo.php
 

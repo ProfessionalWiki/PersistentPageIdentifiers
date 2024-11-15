@@ -13,4 +13,10 @@ interface PersistentPageIdentifiersRepo {
 
 	public function getPersistentId( int $pageId ): ?string;
 
+	/**
+	 * @param int[] $pageIds
+	 * @return array<string|null>
+	 */
+	public function getPersistentIds( array $pageIds ): array;
+
 }

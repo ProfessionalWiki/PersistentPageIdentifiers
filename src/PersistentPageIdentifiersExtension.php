@@ -8,6 +8,7 @@ use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PageIdsRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\GetPersistentPageIdentifiersApi;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
@@ -53,6 +54,12 @@ class PersistentPageIdentifiersExtension {
 	public function getPageIdsRepo(): PageIdsRepo {
 		return new PageIdsRepo(
 			$this->getDatabase()
+		);
+	}
+
+	public static function newGetPersistentPageIdentifiersApi(): GetPersistentPageIdentifiersApi {
+		return new GetPersistentPageIdentifiersApi(
+			self::getInstance()->getPersistentPageIdentifiersRepo()
 		);
 	}
 

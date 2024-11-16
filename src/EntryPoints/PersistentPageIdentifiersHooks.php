@@ -6,6 +6,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
 use DatabaseUpdater;
 use IContextSource;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
@@ -61,6 +62,8 @@ class PersistentPageIdentifiersHooks {
 		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds(
 			[ $wikiPage->getId() => PersistentPageIdentifiersExtension::getInstance()->getIdGenerator()->generate() ]
 		);
+
+		MediaWikiServices::getInstance()->getParserCache()->deleteOptionsKey( $wikiPage );
 	}
 
 }

@@ -51,8 +51,7 @@ HTML
 	public function testParserFunctionReturnsNothingForPageWithoutPersistentId(): void {
 		$this->disablePageSaveHook();
 
-		$page = $this->createPageWithText();
-		$this->editPage( $page, '{{#ppid:}}' );
+		$page = $this->createPageWithText( '{{#ppid:}}' );
 
 		$this->assertPageContentIs(
 			'',
@@ -63,8 +62,7 @@ HTML
 	public function testParserFunctionReturnsPersistentIdWithCustomFormat(): void {
 		$this->overrideConfigValue( 'PersistentPageIdentifiersFormat', 'foo/$1/bar' );
 
-		$page = $this->createPageWithText();
-		$this->editPage( $page, '{{#ppid:}}' );
+		$page = $this->createPageWithText( '{{#ppid:}}' );
 		$id = $this->repo->getPersistentId( $page->getId() );
 
 		$this->assertPageContentIs(
@@ -80,8 +78,7 @@ HTML
 	public function testParserFunctionEscapesFormattedPersistentId(): void {
 		$this->overrideConfigValue( 'PersistentPageIdentifiersFormat', '<strong>$1<script>alert(42)</script>' );
 
-		$page = $this->createPageWithText();
-		$this->editPage( $page, '{{#ppid:}}' );
+		$page = $this->createPageWithText( '{{#ppid:}}' );
 		$id = $this->repo->getPersistentId( $page->getId() );
 
 		$this->assertPageContentIs(

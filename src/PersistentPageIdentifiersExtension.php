@@ -9,8 +9,10 @@ use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageId
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PageIdsRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\GetPersistentPageIdentifiersApi;
+use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PageSaveCompleteHookHandler;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\IdGenerator;
+use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\GlobalSequentialIdGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Infrastructure\UuidGenerator;
 use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Wikimedia\Rdbms\IDatabase;
@@ -25,6 +27,10 @@ class PersistentPageIdentifiersExtension {
 	}
 
 	public function getIdGenerator(): IdGenerator {
+		if ( defined( 'MW_PARSER_TEST' ) ) {
+			return new GlobalSequentialIdGenerator();
+		}
+
 		return new UuidGenerator();
 	}
 

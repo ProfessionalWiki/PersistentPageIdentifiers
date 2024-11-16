@@ -82,6 +82,10 @@ jobs:
         run: bash <(curl -s https://codecov.io/bash)
         if: matrix.mw == 'master'
 
+      - name: Run parser tests
+        run: php tests/parser/parserTests.php --changetree "null" --file extensions/PersistentPageIdentifiers/tests/parser/*
+        if: matrix.mw == 'REL1_39' || matrix.mw == 'REL1_41' || matrix.mw == 'REL1_42'
+
   PHPStan:
     name: "PHPStan: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
 

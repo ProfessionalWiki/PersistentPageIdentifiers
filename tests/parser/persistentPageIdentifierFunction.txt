@@ -1,0 +1,45 @@
+!! options
+parsoid-compatible
+version=2
+!! end
+
+# Force the test runner to ensure the extension is loaded
+!! functionhooks
+ppid
+!! endfunctionhooks
+
+!! test
+Returns nothing without a page context
+!! wikitext
+{{#ppid:}}
+!! html
+!! end
+
+!! article
+Test Page
+!! text
+!! endarticle
+
+!! test
+Returns persistent identifier for page
+!! options
+title=[[Test Page]]
+!! wikitext
+{{#ppid:}}
+!! html
+<p>id-8
+</p>
+!! end
+
+!! test
+Returns formatted persistent identifier for page
+!! config
+wgPersistentPageIdentifiersFormat="foo/$1/bar"
+!! options
+title=[[Test Page]]
+!! wikitext
+{{#ppid:}}
+!! html
+<p>foo/id-8/bar
+</p>
+!! end

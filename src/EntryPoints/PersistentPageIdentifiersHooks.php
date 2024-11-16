@@ -66,4 +66,20 @@ class PersistentPageIdentifiersHooks {
 		MediaWikiServices::getInstance()->getParserCache()->deleteOptionsKey( $wikiPage );
 	}
 
+	public static function onRevisionUndeleted( RevisionRecord $restoredRevision, ?int $oldPageId ): void {
+		if ( $oldPageId !== null ) {
+			return;
+		}
+
+		// TODO: untested
+		$repo = PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo();
+		$oldPersistentId = $repo->getPersistentId( $restoredRevision->getPageId() );
+
+		if ( $oldPersistentId === null ) {
+			return;
+		}
+
+		$repo->savePersistentId( $restoredRevision->getPageId(), $oldPersistentId );
+	}
+
 }

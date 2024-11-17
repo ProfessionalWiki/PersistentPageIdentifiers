@@ -7,6 +7,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
+use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Wikimedia\ParamValidator\ParamValidator;
 
 class GetPersistentPageIdentifiersApi extends SimpleHandler {
@@ -14,7 +15,8 @@ class GetPersistentPageIdentifiersApi extends SimpleHandler {
 	private const PARAM_PAGE_IDS = 'ids';
 
 	public function __construct(
-		private readonly PersistentPageIdentifiersRepo $repo
+		private readonly PersistentPageIdentifiersRepo $repo,
+		private readonly PersistentPageIdFormatter $formatter
 	) {
 	}
 
@@ -31,7 +33,10 @@ class GetPersistentPageIdentifiersApi extends SimpleHandler {
 	 */
 	private function createResponse( array $ids ): Response {
 		return $this->getResponseFactory()->createJson( [
-			'identifiers' => $ids
+			'identifiers' => array_map(
+				fn( ?string $id ) => $this->formatter->format( $id ),
+				$ids
+			)
 		] );
 	}
 

@@ -59,7 +59,8 @@ class PersistentPageIdentifiersExtension {
 
 	public static function newGetPersistentPageIdentifiersApi(): GetPersistentPageIdentifiersApi {
 		return new GetPersistentPageIdentifiersApi(
-			self::getInstance()->getPersistentPageIdentifiersRepo()
+			self::getInstance()->getPersistentPageIdentifiersRepo(),
+			self::getInstance()->newPersistentPageIdFormatter()
 		);
 	}
 

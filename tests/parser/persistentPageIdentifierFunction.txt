@@ -1,0 +1,60 @@
+!! options
+parsoid-compatible
+version=2
+!! end
+
+# Force the test runner to ensure the extension is loaded
+!! functionhooks
+ppid
+!! endfunctionhooks
+
+!! test
+Returns nothing without a page context
+!! wikitext
+{{#ppid:}}
+!! html
+!! end
+
+!! article
+Test Page
+!! text
+!! endarticle
+
+!! test
+Returns persistent identifier for page
+!! config
+wgPersistentPageIdentifiersParserTestStubId="test-42"
+wgPersistentPageIdentifiersFormat="$1"
+!! options
+title=[[Test Page]]
+!! wikitext
+{{#ppid:}}
+!! html
+<p>test-42
+</p>
+!! end
+
+!! test
+Returns formatted persistent identifier for page
+!! config
+wgPersistentPageIdentifiersParserTestStubId="test-43"
+wgPersistentPageIdentifiersFormat="foo/$1/bar"
+!! options
+title=[[Test Page]]
+!! wikitext
+{{#ppid:}}
+!! html
+<p>foo/test-43/bar
+</p>
+!! end
+
+!! test
+Returns nothing when page does not have a persistent identifier
+!! config
+wgPersistentPageIdentifiersParserTestStubId=null
+!! options
+title=[[Test Page]]
+!! wikitext
+{{#ppid:}}
+!! html
+!! end

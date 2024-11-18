@@ -13,11 +13,11 @@ cd mediawiki
 
 composer install
 if [ "$DB" = "mysql" ]; then
-    php maintenance/install.php --dbtype mysql --dbserver db:3306 --dbuser mediawiki --dbpass mediawiki \
+    php maintenance/install.php --dbtype mysql --dbserver localhost:3306 --dbuser mediawiki --dbpass mediawiki \
         --dbname mediawiki --pass AdminPassword WikiName AdminUser
 else
     php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) \
-        --pass AdminPassword --server http://127.0.0.1 WikiName AdminUser
+        --pass AdminPassword WikiName AdminUser
 fi
 
 cat <<'EOT' >> LocalSettings.php

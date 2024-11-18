@@ -17,7 +17,7 @@ use Wikimedia\Rdbms\IDatabase;
 
 class PersistentPageIdentifiersExtension {
 
-	private ?PersistentPageIdentifiersRepo $persistentPageIdentifiersRepo = null;
+	private PersistentPageIdentifiersRepo $persistentPageIdentifiersRepo;
 
 	public static function getInstance(): self {
 		/** @var ?PersistentPageIdentifiersExtension $instance */
@@ -31,7 +31,7 @@ class PersistentPageIdentifiersExtension {
 	}
 
 	public function getPersistentPageIdentifiersRepo(): PersistentPageIdentifiersRepo {
-		if ( $this->persistentPageIdentifiersRepo === null ) {
+		if ( !isset( $this->persistentPageIdentifiersRepo ) ) {
 			$this->persistentPageIdentifiersRepo = new DatabasePersistentPageIdentifiersRepo(
 				$this->getDatabase()
 			);

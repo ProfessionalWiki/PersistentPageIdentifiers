@@ -4,6 +4,8 @@ MW_BRANCH=$1
 DB=$2
 EXTENSION_NAME=$3
 
+rm -rf mediawiki
+
 wget https://github.com/wikimedia/mediawiki/archive/$MW_BRANCH.tar.gz -nv
 
 tar -zxf $MW_BRANCH.tar.gz

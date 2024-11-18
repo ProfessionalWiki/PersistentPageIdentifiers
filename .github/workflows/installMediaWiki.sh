@@ -1,7 +1,8 @@
 #! /bin/bash
 
 MW_BRANCH=$1
-EXTENSION_NAME=$2
+DB=$2
+EXTENSION_NAME=$3
 
 wget https://github.com/wikimedia/mediawiki/archive/$MW_BRANCH.tar.gz -nv
 
@@ -11,7 +12,13 @@ mv mediawiki-$MW_BRANCH mediawiki
 cd mediawiki
 
 composer install
-php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) --pass AdminPassword WikiName AdminUser
+if [ "$DB" = "mysql" ]; then
+    php maintenance/install.php --dbtype mysql --dbserver db:3306 --dbuser mediawiki --dbpass mediawiki \
+        --dbname mediawiki --pass AdminPassword WikiName AdminUser
+else
+    php maintenance/install.php --dbtype sqlite --dbuser root --dbname mw --dbpath $(pwd) \
+        --pass AdminPassword --server http://127.0.0.1 WikiName AdminUser
+fi
 
 cat <<'EOT' >> LocalSettings.php
 error_reporting(E_ALL| E_STRICT);

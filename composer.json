@@ -1,7 +1,7 @@
 {
 	"name": "professional-wiki/persistent-page-identifiers",
 	"type": "mediawiki-extension",
-	"description": "TODO",
+	"description": "Stable unique identifiers for your MediaWiki pages. UUID v7 or PURIs, accessible via parser function and REST API",
 	"keywords": [
 		"MediaWiki"
 	],

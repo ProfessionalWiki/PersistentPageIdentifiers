@@ -6,23 +6,44 @@ on:
 
 jobs:
   test:
-    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}"
+    name: "PHPUnit: MW ${{ matrix.mw }}, PHP ${{ matrix.php }}, DB ${{ matrix.db }}"
 
     strategy:
       matrix:
         include:
           - mw: 'REL1_39'
             php: '8.1'
+            db: 'mysql'
+          - mw: 'REL1_39'
+            php: '8.1'
+            db: 'sqlite'
           - mw: 'REL1_41'
             php: '8.2'
+            db: 'sqlite'
           - mw: 'REL1_42'
             php: '8.3'
+            db: 'sqlite'
           - mw: 'REL1_43'
             php: '8.3'
+            db: 'mysql'
+          - mw: 'REL1_43'
+            php: '8.3'
+            db: 'sqlite'
           - mw: 'master'
             php: '8.3'
+            db: 'sqlite'
 
     runs-on: ubuntu-latest
+
+    services:
+      db:
+        image: mariadb
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_DATABASE: mediawiki
+          MYSQL_USER: mediawiki
+          MYSQL_PASSWORD: mediawiki
 
     defaults:
       run:
@@ -44,7 +65,7 @@ jobs:
             mediawiki
             !mediawiki/extensions/
             !mediawiki/vendor/
-          key: mw_${{ matrix.mw }}-php${{ matrix.php }}_v1
+          key: mw_${{ matrix.mw }}-php${{ matrix.php }}-${{ matrix.db }}_v1
 
       - name: Cache Composer cache
         uses: actions/cache@v4
@@ -59,7 +80,7 @@ jobs:
       - name: Install MediaWiki
         if: steps.cache-mediawiki.outputs.cache-hit != 'true'
         working-directory: ~
-        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} PersistentPageIdentifiers
+        run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ${{ matrix.db }} PersistentPageIdentifiers
 
       - uses: actions/checkout@v4
         with:

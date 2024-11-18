@@ -79,7 +79,7 @@ jobs:
             path: EarlyCopy
 
       - name: Install MediaWiki
-        if: steps.cache-mediawiki.outputs.cache-hit != 'true'
+        if: steps.cache-mediawiki.outputs.cache-hit != 'true' || matrix.db == 'mysql'
         working-directory: ~
         run: bash EarlyCopy/.github/workflows/installMediaWiki.sh ${{ matrix.mw }} ${{ matrix.db }} PersistentPageIdentifiers
 

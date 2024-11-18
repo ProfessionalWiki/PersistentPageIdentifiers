@@ -41,6 +41,7 @@ jobs:
         ports:
           - 3306:3306
         env:
+          MYSQL_RANDOM_ROOT_PASSWORD: 1
           MYSQL_DATABASE: mediawiki
           MYSQL_USER: mediawiki
           MYSQL_PASSWORD: mediawiki

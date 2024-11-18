@@ -7,7 +7,6 @@ namespace ProfessionalWiki\PersistentPageIdentifiers;
 use MediaWiki\MediaWikiServices;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\DatabasePersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Adapters\PageIdsRepo;
-use ProfessionalWiki\PersistentPageIdentifiers\Adapters\StubPersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\GetPersistentPageIdentifiersApi;
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\PersistentPageIdFunction;
@@ -17,6 +16,8 @@ use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdForm
 use Wikimedia\Rdbms\IDatabase;
 
 class PersistentPageIdentifiersExtension {
+
+	private ?PersistentPageIdentifiersRepo $persistentPageIdentifiersRepo = null;
 
 	public static function getInstance(): self {
 		/** @var ?PersistentPageIdentifiersExtension $instance */
@@ -30,19 +31,13 @@ class PersistentPageIdentifiersExtension {
 	}
 
 	public function getPersistentPageIdentifiersRepo(): PersistentPageIdentifiersRepo {
-		if ( defined( 'MW_PARSER_TEST' ) ) {
-			return $this->getParserTestPersistentPageIdentifiersRepo();
+		if ( $this->persistentPageIdentifiersRepo === null ) {
+			$this->persistentPageIdentifiersRepo = new DatabasePersistentPageIdentifiersRepo(
+				$this->getDatabase()
+			);
 		}
 
-		return new DatabasePersistentPageIdentifiersRepo(
-			$this->getDatabase()
-		);
-	}
-
-	private function getParserTestPersistentPageIdentifiersRepo(): PersistentPageIdentifiersRepo {
-		return new StubPersistentPageIdentifiersRepo(
-			$GLOBALS['wgPersistentPageIdentifiersParserTestStubId'] ?? null
-		);
+		return $this->persistentPageIdentifiersRepo;
 	}
 
 	private function getDatabase(): IDatabase {
@@ -73,6 +68,10 @@ class PersistentPageIdentifiersExtension {
 			self::getInstance()->getPersistentPageIdentifiersRepo(),
 			self::getInstance()->newPersistentPageIdFormatter()
 		);
+	}
+
+	public function setPersistentPageIdentifiersRepo( PersistentPageIdentifiersRepo $repo ): void {
+		$this->persistentPageIdentifiersRepo = $repo;
 	}
 
 }

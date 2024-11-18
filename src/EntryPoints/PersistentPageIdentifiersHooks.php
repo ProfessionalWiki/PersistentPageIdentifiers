@@ -11,6 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use Parser;
+use ProfessionalWiki\PersistentPageIdentifiers\Adapters\StubPersistentPageIdentifiersRepo;
 use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
 use WikiPage;
 
@@ -64,6 +65,14 @@ class PersistentPageIdentifiersHooks {
 		);
 
 		MediaWikiServices::getInstance()->getParserCache()->deleteOptionsKey( $wikiPage );
+	}
+
+	public static function onParserTestGlobals( array &$globals ): void {
+		PersistentPageIdentifiersExtension::getInstance()->setPersistentPageIdentifiersRepo(
+			new StubPersistentPageIdentifiersRepo(
+				$globals['wgPersistentPageIdentifiersParserTestStubId'] ?? null
+			)
+		);
 	}
 
 }

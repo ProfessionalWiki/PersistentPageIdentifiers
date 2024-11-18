@@ -68,8 +68,3 @@ these files with `make stan-baseline`.
 [MediaWiki Hosting]: https://pro.wiki
 [MediaWiki Development]: https://professional.wiki/en/mediawiki-development
 [MediaWiki Consulting]: https://professional.wiki/en/mediawiki-consulting-services
-[MediaWiki]: https://www.mediawiki.org
-[PHP]: https://www.php.net
-[Composer]: https://getcomposer.org
-[Composer install]: https://professional.wiki/en/articles/installing-mediawiki-extensions-with-composer
-[LocalSettings.php]: https://www.pro.wiki/help/mediawiki-localsettings-php-guide

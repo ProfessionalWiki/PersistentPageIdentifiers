@@ -53,7 +53,7 @@ these files with `make stan-baseline`.
 
 ## Release Notes
 
-### Version 1.0.0 - TODO
+### Version 1.0.0 - 2024-11-20
 
 * Generate a unique persistent identifier for each page
 * Maintenance script to generate persistent identifiers for all pages without them

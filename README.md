@@ -11,7 +11,7 @@ Read more in the [Persistent Page Identifiers documentation](https://professiona
 
 - [Usage](#usage-documentation)
 - [Installation](#installation)
-- [PHP Configuration](#php-configuration)
+- [Configuration](#configuration)
 - [Development](#development)
 - [Release notes](#release-notes)
 
@@ -27,7 +27,7 @@ See the [Persistent Page Identifiers usage documentation](https://professional.w
 
 See the [Persistent Page Identifiers installation instructions](https://professional.wiki/en/extension/persistent-page-identifiers#Installation).
 
-## PHP Configuration
+## Configuration
 
 See the [Persistent Page Identifiers configuration reference](https://professional.wiki/en/extension/persistent-page-identifiers#Configuration).
 

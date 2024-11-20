@@ -3,12 +3,10 @@
 		"authors": [
 			"Jeroen De Dauw",
 			"Karsten Hoffmeyer",
-			"Morne Alberts",
-			"Waseem Abbas"
+			"Morne Alberts"
 		]
 	},
 	"persistentpageidentifiers-name": "Persistent Page Identifiers",
-	"persistentpageidentifiers-description": "Stable unique identifiers for your wiki pages. UUID v7 or PURIs, accessible via parser function and REST API.",
-
+	"persistentpageidentifiers-description": "Stable unique identifiers for your wiki pages. UUID v7 or PURIs, accessible via parser function and REST API",
 	"persistentpageidentifiers-info-label": "Persistent page identifier"
 }

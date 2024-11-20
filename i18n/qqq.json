@@ -1,14 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Jeroen De Dauw",
 			"Karsten Hoffmeyer",
-			"Morne Alberts",
-			"Waseem Abbas"
+			"Morne Alberts"
 		]
 	},
 	"persistentpageidentifiers-name": "{{Name}}",
 	"persistentpageidentifiers-description": "{{Desc|name=PersistentPageIdentifiers|url=https://github.com/ProfessionalWiki/PersistentPageIdentifiers}}",
-
 	"persistentpageidentifiers-info-label": "Persistent page identifier label on action=info page"
 }

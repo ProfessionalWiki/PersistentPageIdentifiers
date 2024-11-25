@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mahabarata"
+		]
+	},
+	"persistentpageidentifiers-description": "Identifiants uniques stables pour vos pages wiki. UUID v7 ou PURI, accessibles via la fonction d'analyse et l'API REST",
+	"persistentpageidentifiers-info-label": "Identifiant de page persistant"
+}

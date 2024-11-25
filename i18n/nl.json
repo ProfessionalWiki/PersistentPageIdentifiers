@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"persistentpageidentifiers-description": "Stabiele unieke identificatiecodes voor uw wikipagina’s. UUID v7 of PURI's, toegankelijk via parserfunctie en REST API",
+	"persistentpageidentifiers-info-label": "Blijvende pagina-identificatie"
+}

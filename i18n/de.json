@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kghbln"
+		]
+	},
+	"persistentpageidentifiers-description": "Ermöglicht das Zuordnen permanenter Kennungen zu Seiten (UUID v7 oder PURI), die mit einer Parserfunktion oder über die REST-API erschlossen werden können",
+	"persistentpageidentifiers-info-label": "Permanente Seitenkennung"
+}

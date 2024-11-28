@@ -3,7 +3,7 @@
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/ProfessionalWiki/PersistentPageIdentifiers/ci.yml?branch=master)](https://github.com/ProfessionalWiki/PersistentPageIdentifiers/actions?query=workflow%3ACI)
 [![Latest Stable Version](https://poser.pugx.org/professional-wiki/persistent-page-identifiers/v/stable)](https://packagist.org/packages/professional-wiki/persistent-page-identifiers)
 [![Download count](https://poser.pugx.org/professional-wiki/persistent-page-identifiers/downloads)](https://packagist.org/packages/professional-wiki/persistent-page-identifiers)
-[![License](https://img.shields.io/packagist/l/professional-wiki/persistent-page-identifiers)](LICENSE)
+[![License](https://poser.pugx.org/professional-wiki/persistent-page-identifiers/license)](LICENSE)
 
 Stable unique identifiers for your wiki pages. Maintain persistent references across MediaWiki page changes.
 Read more in the [Persistent Page Identifiers documentation](https://professional.wiki/en/extension/persistent-page-identifiers).

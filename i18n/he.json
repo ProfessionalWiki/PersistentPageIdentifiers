@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"persistentpageidentifiers-description": "מזהים ייחודיים יציבים עבור דפי הוויקי שלך. UUID v7 או PURIs, נגישים באמצעות פונקציית מפענח ו־REST API",
+	"persistentpageidentifiers-info-label": "מזהה דף קבוע"
+}

@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"persistentpageidentifiers-description": "Устојчиви единствени назнаки за вашите викистраници. UUID v7 или PURI-ја, достапни преку расчленувачка функција и REST API",
+	"persistentpageidentifiers-info-label": "Постојана назнака на страница"
+}

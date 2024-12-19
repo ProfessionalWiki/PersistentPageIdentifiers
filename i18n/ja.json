@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"もなー(偽物)"
+		]
+	},
+	"persistentpageidentifiers-description": "ウィキ ページ用の一意な識別子。パーサ関数とREST API経由でアクセス可能なUUID v7またはPURI。",
+	"persistentpageidentifiers-info-label": "永続的なページ識別子"
+}

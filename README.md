@@ -54,6 +54,11 @@ these files with `make stan-baseline`.
 
 ## Release Notes
 
+### Version 1.0.1 - 2024-12-20
+
+* Fixed extension detection in the maintenance script
+* Added community translations
+
 ### Version 1.0.0 - 2024-11-20
 
 * Generate a unique persistent identifier for each page

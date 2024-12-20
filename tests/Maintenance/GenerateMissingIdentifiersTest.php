@@ -20,6 +20,7 @@ class GenerateMissingIdentifiersTest extends PersistentPageIdentifiersIntegratio
 		parent::setUp();
 
 		$this->maintenance = new GenerateMissingIdentifiers();
+		$this->maintenance->checkRequiredExtensions();
 	}
 
 	protected function tearDown(): void {

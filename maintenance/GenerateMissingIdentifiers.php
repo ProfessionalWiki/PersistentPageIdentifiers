@@ -16,7 +16,7 @@ class GenerateMissingIdentifiers extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 
-		$this->requireExtension( 'PersistentPageIdentifiers' );
+		$this->requireExtension( 'Persistent Page Identifiers' );
 		$this->addDescription( 'Generates persistent identifiers for pages without them' );
 	}
 

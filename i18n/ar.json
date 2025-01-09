@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"persistentpageidentifiers-description": "معرفات فريدة مستقرة لصفحات الويكي الخاصة بك. UUID v7 أو PURIs، يمكن الوصول إليها عبر وظيفة المحلل وواجهة برمجة تطبيقات REST",
+	"persistentpageidentifiers-info-label": "معرف الصفحة الدائم"
+}

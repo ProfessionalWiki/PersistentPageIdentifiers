@@ -8,6 +8,9 @@
 Stable unique identifiers for your wiki pages. Maintain persistent references across MediaWiki page changes.
 Read more in the [Persistent Page Identifiers documentation](https://professional.wiki/en/extension/persistent-page-identifiers).
 
+[Professional Wiki] created this extension and provides
+[MediaWiki Development], [MediaWiki Hosting], and [MediaWiki Consulting] services.
+
 **Table of Contents**
 
 - [Usage](#usage-documentation)
@@ -15,10 +18,6 @@ Read more in the [Persistent Page Identifiers documentation](https://professiona
 - [Configuration](#configuration)
 - [Development](#development)
 - [Release notes](#release-notes)
-
-
-[Professional Wiki] created this extension and provides
-[MediaWiki Development], [MediaWiki Hosting], and [MediaWiki Consulting] services.
 
 ## Usage Documentation
 
@@ -48,7 +47,7 @@ You can use the `Makefile` by running make commands in the `PersistentPageIdenti
 
 ### Updating Baseline Files
 
-Sometimes PHPStan generate errors or warnings we do not wish to fix.
+Sometimes, PHPStan generates errors or warnings we do not wish to fix.
 These can be ignored by adding them to the respective baseline file. You can update
 these files with `make stan-baseline`.
 

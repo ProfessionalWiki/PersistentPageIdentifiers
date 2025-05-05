@@ -8,18 +8,18 @@ use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentif
 
 class InMemoryPersistentPageIdentifiersRepo implements PersistentPageIdentifiersRepo {
 
-	private array $persistentIds = [];
+	private array $persistentIdsByPageId = [];
 
 	public function savePersistentIds( array $ids ): void {
-		$this->persistentIds = $this->persistentIds + $ids;
+		$this->persistentIdsByPageId = $this->persistentIdsByPageId + $ids;
 	}
 
 	public function getPersistentId( int $pageId ): ?string {
-		return $this->persistentIds[$pageId] ?? null;
+		return $this->persistentIdsByPageId[$pageId] ?? null;
 	}
 
 	public function getPersistentIds( array $pageIds ): array {
-		return array_intersect_key( $this->persistentIds, array_flip( $pageIds ) );
+		return array_intersect_key( $this->persistentIdsByPageId, array_flip( $pageIds ) );
 	}
 
 }

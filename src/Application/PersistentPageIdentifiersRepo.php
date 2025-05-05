@@ -7,7 +7,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\Application;
 interface PersistentPageIdentifiersRepo {
 
 	/**
-	 * @param array<int, string> $ids
+	 * @param array<int, string> $ids Maps page IDs to persistent IDs
 	 */
 	public function savePersistentIds( array $ids ): void;
 

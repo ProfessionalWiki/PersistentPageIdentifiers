@@ -31,6 +31,18 @@ parameters:
 			path: src/EntryPoints/PersistentPageIdentifiersHooks.php
 
 		-
+			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPURIResolver\:\:getFormFields\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/EntryPoints/SpecialPURIResolver.php
+
+		-
+			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPURIResolver\:\:onSubmit\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/EntryPoints/SpecialPURIResolver.php
+
+		-
 			message: '#^Method ProfessionalWiki\\PersistentPageIdentifiers\\PersistentPageIdentifiersExtension\:\:getDatabase\(\) should return Wikimedia\\Rdbms\\IDatabase but returns Wikimedia\\Rdbms\\IDatabase\|false\.$#'
 			identifier: return.type
 			count: 1

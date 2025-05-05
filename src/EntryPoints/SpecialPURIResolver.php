@@ -31,7 +31,7 @@ class SpecialPURIResolver extends FormSpecialPage {
 		$this->getOutput()->redirect( $title->getFullURL() );
 	}
 
-	protected function getFormFields() {
+	protected function getFormFields(): array {
 		return [
 			'puri' => [
 				'type' => 'text',
@@ -41,7 +41,7 @@ class SpecialPURIResolver extends FormSpecialPage {
 		];
 	}
 
-	public function onSubmit( array $data ) {
+	public function onSubmit( array $data ): Status|bool {
 		$title = $this->getTitleFromPersistentId( $data['puri'] );
 
 		if ( !$title ) {
@@ -50,9 +50,11 @@ class SpecialPURIResolver extends FormSpecialPage {
 		}
 
 		$this->getOutput()->redirect( $title->getFullURL() );
+
+		return true;
 	}
 
-	protected function getDisplayFormat() {
+	protected function getDisplayFormat(): string {
 		return 'ooui';
 	}
 

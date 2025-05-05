@@ -29,9 +29,6 @@ jobs:
           - mw: 'REL1_43'
             php: '8.3'
             db: 'sqlite'
-          - mw: 'master'
-            php: '8.3'
-            db: 'sqlite'
 
     runs-on: ubuntu-latest
 
@@ -98,11 +95,11 @@ jobs:
 
       - name: Run PHPUnit with code coverage
         run: php tests/phpunit/phpunit.php -c extensions/PersistentPageIdentifiers/ --coverage-clover coverage.xml
-        if: matrix.mw == 'master'
+        if: matrix.mw == 'REL1_43'
 
       - name: Upload code coverage
         run: bash <(curl -s https://codecov.io/bash)
-        if: matrix.mw == 'master'
+        if: matrix.mw == 'REL1_43'
 
       - name: Run parser tests
         run: php tests/parser/parserTests.php --changetree "null" --file extensions/PersistentPageIdentifiers/tests/parser/*

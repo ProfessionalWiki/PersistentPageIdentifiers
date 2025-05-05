@@ -61,7 +61,12 @@
 		}
 	],
 
+	"SpecialPages": {
+		"PURIResolver": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPURIResolver"
+	},
+
 	"ExtensionMessagesFiles": {
+		"PersistentPageIdentifiersAlias": "PersistentPageIdentifiers.alias.php",
 		"PersistentPageIdentifiersMagic": "i18n/Magic/MagicWords.php"
 	},
 

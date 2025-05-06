@@ -62,7 +62,7 @@
 	],
 
 	"SpecialPages": {
-		"PURIResolver": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPURIResolver"
+		"PersistentPageIdentifierResolver": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPersistentPageIdentifierResolver"
 	},
 
 	"ExtensionMessagesFiles": {

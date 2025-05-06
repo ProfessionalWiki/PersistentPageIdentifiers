@@ -71,21 +71,4 @@ class PageIdsRepoTest extends PersistentPageIdentifiersIntegrationTest {
 		);
 	}
 
-	public function testGetPageIdFromPersistentId(): void {
-		$page = $this->createPageWithText();
-
-		$persistentId = $this->db->newSelectQueryBuilder()
-			->select( 'ppi.persistent_id' )
-			->from( 'persistent_page_ids', 'ppi' )
-			->where( [ 'ppi.page_id' => $page->getId() ] )
-			->fetchField();
-
-		$this->assertIsString( $persistentId );
-		$this->assertSame( $page->getId(), $this->repo->getPageIdFromPersistentId( $persistentId ) );
-	}
-
-	public function testGetPageIdFromNonExistentPersistentId(): void {
-		$this->assertNull( $this->repo->getPageIdFromPersistentId( 'non-existent' ) );
-	}
-
 }

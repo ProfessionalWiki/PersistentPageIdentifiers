@@ -9,7 +9,6 @@
 	"persistentpageidentifiers-name": "Persistent Page Identifiers",
 	"persistentpageidentifiers-description": "Stable unique identifiers for your wiki pages. UUID v7 or PURIs, accessible via parser function and REST API",
 	"persistentpageidentifiers-info-label": "Persistent page identifier",
-	"puriresolver": "Redirect by PURI",
-	"puriresolver-puri": "PURI",
-	"puriresolver-not-exists": "PURI does not exist"
+	"persistentpageidentifierresolver": "Redirect by Persistent Page Identifier",
+	"persistentpageidentifierresolver-not-exists": "Persistent Page Identifier does not exist"
 }

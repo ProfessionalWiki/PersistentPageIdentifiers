@@ -59,4 +59,14 @@ class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiers
 		return $rows;
 	}
 
+	public function getPageIdFromPersistentId( string $persistentId ): ?int {
+		$pageId = $this->database->newSelectQueryBuilder()
+			->select( 'page_id' )
+			->from( 'persistent_page_ids' )
+			->where( [ 'persistent_id' => $persistentId ] )
+			->fetchField();
+
+		return is_numeric( $pageId ) ? (int)$pageId : null;
+	}
+
 }

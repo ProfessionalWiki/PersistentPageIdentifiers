@@ -30,15 +30,4 @@ class PageIdsRepo {
 		);
 	}
 
-	public function getPageIdFromPersistentId( string $persistentId ): ?int {
-		$row = $this->database->newSelectQueryBuilder()
-			->select( 'p.page_id' )
-			->from( 'page', 'p' )
-			->join( 'persistent_page_ids', 'ppi', 'p.page_id = ppi.page_id' )
-			->where( [ 'ppi.persistent_id' => $persistentId ] )
-			->fetchRow();
-
-		return $row && is_object( $row ) ? (int)$row->page_id : null;
-	}
-
 }

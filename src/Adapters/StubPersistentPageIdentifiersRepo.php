@@ -25,4 +25,8 @@ class StubPersistentPageIdentifiersRepo implements PersistentPageIdentifiersRepo
 		return array_combine( $pageIds, array_fill( 0, count( $pageIds ), $this->id ) );
 	}
 
+	public function getPageIdFromPersistentId( string $persistentId ): ?int {
+		return $this->id ? 1337 : null;
+	}
+
 }

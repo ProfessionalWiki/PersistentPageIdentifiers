@@ -3,5 +3,5 @@ $specialPageAliases = [];
 
 /** English (English) */
 $specialPageAliases['en'] = [
-	'PURIResolver' => [ 'PURIResolver' ],
+	'PersistentPageIdentifierResolver' => [ 'PersistentPageIdentifierResolver' ],
 ];

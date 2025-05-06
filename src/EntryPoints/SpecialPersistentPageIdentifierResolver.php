@@ -9,22 +9,22 @@ use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtensio
 use Status;
 use Title;
 
-class SpecialPURIResolver extends FormSpecialPage {
+class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 
 	public function __construct() {
-		parent::__construct( 'PURIResolver' );
+		parent::__construct( 'PersistentPageIdentifierResolver' );
 	}
 
 	public function execute( $subPage ): void {
 		parent::execute( $subPage );
 
-		if ( !$subPage ) {
+		if ( $subPage === null || $subPage === '' ) {
 			return;
 		}
 
 		$title = $this->getTitleFromPersistentId( $subPage );
 
-		if ( !$title ) {
+		if ( $title === null ) {
 			return;
 		}
 
@@ -33,19 +33,19 @@ class SpecialPURIResolver extends FormSpecialPage {
 
 	protected function getFormFields(): array {
 		return [
-			'puri' => [
+			'persistentpageidentifier' => [
 				'type' => 'text',
-				'label-message' => 'puriresolver-puri',
+				'label-message' => 'persistentpageidentifiers-info-label',
 				'required' => true,
 			]
 		];
 	}
 
 	public function onSubmit( array $data ): Status|bool {
-		$title = $this->getTitleFromPersistentId( $data['puri'] );
+		$title = $this->getTitleFromPersistentId( $data['persistentpageidentifier'] );
 
-		if ( !$title ) {
-			// Message: puri-not-exists
+		if ( $title === null ) {
+			// Message: persistentpageidentifierresolver-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
 
@@ -65,7 +65,7 @@ class SpecialPURIResolver extends FormSpecialPage {
 	private function getTitleFromPersistentId( string $persistentId ): ?Title {
 		$pageId = $this->getPageIdFromPersistentId( $persistentId );
 
-		if ( $pageId ) {
+		if ( $pageId !== null ) {
 			return Title::newFromID( $pageId );
 		}
 
@@ -73,7 +73,7 @@ class SpecialPURIResolver extends FormSpecialPage {
 	}
 
 	private function getPageIdFromPersistentId( string $persistentId ): ?int {
-		return PersistentPageIdentifiersExtension::getInstance()->getPageIdsRepo()->getPageIdFromPersistentId( $persistentId );
+		return PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->getPageIdFromPersistentId( $persistentId );
 	}
 
 }

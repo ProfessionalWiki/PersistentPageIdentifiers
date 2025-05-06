@@ -16,8 +16,6 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 	}
 
 	public function execute( $subPage ): void {
-		parent::execute( $subPage );
-
 		if ( $subPage === null || $subPage === '' ) {
 			return;
 		}

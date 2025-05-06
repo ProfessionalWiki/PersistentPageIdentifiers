@@ -16,17 +16,27 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 	}
 
 	public function execute( $subPage ): void {
-		if ( $subPage === null || $subPage === '' ) {
+		// Redirect to the page immediately if it is valid
+		if ( $this->getRedirectUrl( $subPage ) !== null ) {
+			$this->getOutput()->redirect( $this->getRedirectUrl( $subPage ) );
 			return;
+		}
+
+		parent::execute( $subPage );
+	}
+
+	private function getRedirectUrl( ?string $subPage ): ?string {
+		if ( $subPage === null || $subPage === '' ) {
+			return null;
 		}
 
 		$title = $this->getTitleFromPersistentId( $subPage );
 
 		if ( $title === null ) {
-			return;
+			return null;
 		}
 
-		$this->getOutput()->redirect( $title->getFullURL() );
+		return $title->getFullURL();
 	}
 
 	protected function getFormFields(): array {

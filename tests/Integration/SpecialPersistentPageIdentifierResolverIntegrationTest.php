@@ -9,6 +9,7 @@ use ProfessionalWiki\PersistentPageIdentifiers\Application\PersistentPageIdentif
 use ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\SpecialPersistentPageIdentifierResolver;
 use ProfessionalWiki\PersistentPageIdentifiers\Tests\PersistentPageIdentifiersIntegrationTest;
 use Status;
+use WikiPage;
 
 /**
  * @covers \ProfessionalWiki\PersistentPageIdentifiers\EntryPoints\SpecialPersistentPageIdentifierResolver
@@ -17,6 +18,7 @@ use Status;
 class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentPageIdentifiersIntegrationTest {
 
 	private PersistentPageIdentifiersRepo $repo;
+	private WikiPage $page;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -24,18 +26,27 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 		$this->repo = new DatabasePersistentPageIdentifiersRepo( $this->db );
 	}
 
+	protected function tearDown(): void {
+		// This is required because the pages persist into GenerateMissingIdentifiersTest in
+		// older MediaWiki/PHPUnit version. This is not needed for MW 1.42+.
+		if ( isset( $this->page ) ) {
+			$this->deletePage( $this->page );
+		}
+		parent::tearDown();
+	}
+
 	protected function newSpecialPage(): SpecialPersistentPageIdentifierResolver {
 		return new SpecialPersistentPageIdentifierResolver();
 	}
 
 	public function testExecuteWithValidIdRedirects(): void {
-		$page = $this->createPageWithText();
+		$this->page = $this->createPageWithText();
 
 		$resolver = $this->newSpecialPage();
-		$resolver->execute( $this->repo->getPersistentId( $page->getId() ) );
+		$resolver->execute( $this->repo->getPersistentId( $this->page->getId() ) );
 
 		$this->assertSame(
-			$page->getTitle()->getFullURL(),
+			$this->page->getTitle()->getFullURL(),
 			$resolver->getOutput()->getRedirect(),
 			'Should redirect to the page associated with the persistent ID.'
 		);
@@ -43,6 +54,9 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 
 	public function testExecuteWithNonExistentIdReturns(): void {
 		$resolver = $this->newSpecialPage();
+		// Call parent::execute first before attempting to execute with an invalid subpage
+		// This is only needed for the test
+		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( 'non-existent-id' );
 
 		$this->assertSame(
@@ -54,6 +68,9 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 
 	public function testExecuteWithEmptySubPageReturns(): void {
 		$resolver = $this->newSpecialPage();
+		// Call parent::execute first before attempting to execute with an empty subpage
+		// This is only needed for the test
+		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( '' );
 
 		$this->assertSame(
@@ -65,6 +82,9 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 
 	public function testExecuteWithNullSubPageReturns(): void {
 		$resolver = $this->newSpecialPage();
+		// Call parent::execute first before attempting to execute with a null subpage
+		// This is only needed for the test
+		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( null );
 
 		$this->assertSame(
@@ -75,14 +95,14 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 	}
 
 	public function testOnSubmitWithValidIdRedirects(): void {
-		$page = $this->createPageWithText();
+		$this->page = $this->createPageWithText();
 
 		$resolver = $this->newSpecialPage();
-		$status = $resolver->onSubmit( [ 'persistentpageidentifier' => $this->repo->getPersistentId( $page->getId() ) ] );
+		$status = $resolver->onSubmit( [ 'persistentpageidentifier' => $this->repo->getPersistentId( $this->page->getId() ) ] );
 
 		$this->assertTrue( $status, 'onSubmit should return true on success.' );
 		$this->assertSame(
-			$page->getTitle()->getFullURL(),
+			$this->page->getTitle()->getFullURL(),
 			$resolver->getOutput()->getRedirect(),
 			'Should redirect to the page associated with the persistent ID on form submission.'
 		);

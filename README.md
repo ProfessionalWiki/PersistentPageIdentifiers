@@ -53,6 +53,10 @@ these files with `make stan-baseline`.
 
 ## Release Notes
 
+### Version 1.1.0 - 2025-05-08
+
+* Added `Special:PersistentPageIdentifierResolver`
+
 ### Version 1.0.1 - 2024-12-20
 
 * Fixed extension detection in the maintenance script

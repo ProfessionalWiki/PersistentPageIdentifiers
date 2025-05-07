@@ -22,4 +22,9 @@ class InMemoryPersistentPageIdentifiersRepo implements PersistentPageIdentifiers
 		return array_intersect_key( $this->persistentIdsByPageId, array_flip( $pageIds ) );
 	}
 
+	public function getPageIdFromPersistentId( string $persistentId ): ?int {
+		$pageId = array_search( $persistentId, $this->persistentIds, true );
+		return $pageId === false ? null : $pageId;
+	}
+
 }

@@ -19,4 +19,5 @@ interface PersistentPageIdentifiersRepo {
 	 */
 	public function getPersistentIds( array $pageIds ): array;
 
+	public function getPageIdFromPersistentId( string $persistentId ): ?int;
 }

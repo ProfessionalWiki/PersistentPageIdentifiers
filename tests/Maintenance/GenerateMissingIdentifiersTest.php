@@ -21,6 +21,11 @@ class GenerateMissingIdentifiersTest extends PersistentPageIdentifiersIntegratio
 
 		$this->maintenance = new GenerateMissingIdentifiers();
 		$this->maintenance->checkRequiredExtensions();
+
+		// Run first to ensure that all existing pages have persistent IDs
+		// This is required because the pages persist into GenerateMissingIdentifiersTest in
+		// older MediaWiki/PHPUnit version. This is not needed for MW 1.42+.
+		$this->maintenance->execute();
 	}
 
 	protected function tearDown(): void {

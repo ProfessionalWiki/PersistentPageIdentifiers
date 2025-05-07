@@ -7,5 +7,7 @@
 	},
 	"persistentpageidentifiers-name": "{{Name}}",
 	"persistentpageidentifiers-description": "{{Desc|name=PersistentPageIdentifiers|url=https://github.com/ProfessionalWiki/PersistentPageIdentifiers}}",
-	"persistentpageidentifiers-info-label": "Persistent page identifier label on action=info page"
+	"persistentpageidentifiers-info-label": "Persistent page identifier label on action=info page",
+	"persistentpageidentifierresolver": "Special page name for redirect by Persistent Page Identifier",
+	"persistentpageidentifierresolver-not-exists": "Error message when Persistent Page Identifier does not exist"
 }

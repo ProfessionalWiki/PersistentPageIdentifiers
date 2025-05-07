@@ -8,5 +8,7 @@
 	},
 	"persistentpageidentifiers-name": "Persistent Page Identifiers",
 	"persistentpageidentifiers-description": "Stable unique identifiers for your wiki pages. UUID v7 or PURIs, accessible via parser function and REST API",
-	"persistentpageidentifiers-info-label": "Persistent page identifier"
+	"persistentpageidentifiers-info-label": "Persistent page identifier",
+	"persistentpageidentifierresolver": "Redirect by Persistent Page Identifier",
+	"persistentpageidentifierresolver-not-exists": "Persistent Page Identifier does not exist"
 }

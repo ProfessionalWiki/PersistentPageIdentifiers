@@ -61,7 +61,12 @@
 		}
 	],
 
+	"SpecialPages": {
+		"PersistentPageIdentifierResolver": "ProfessionalWiki\\PersistentPageIdentifiers\\EntryPoints\\SpecialPersistentPageIdentifierResolver"
+	},
+
 	"ExtensionMessagesFiles": {
+		"PersistentPageIdentifiersAlias": "PersistentPageIdentifiers.alias.php",
 		"PersistentPageIdentifiersMagic": "i18n/Magic/MagicWords.php"
 	},
 

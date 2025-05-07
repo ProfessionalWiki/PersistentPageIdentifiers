@@ -102,4 +102,16 @@ class DatabasePersistentPageIdentifiersRepoTest extends PersistentPageIdentifier
 		);
 	}
 
+	public function testGetPageIdFromPersistentId(): void {
+		$pageId = $this->createPageWithText()->getId();
+		$persistentId = '00000000-0000-0000-0000-000000000042';
+
+		$this->repo->savePersistentIds( [ $pageId => $persistentId ] );
+		$this->assertSame( $pageId, $this->repo->getPageIdFromPersistentId( $persistentId ) );
+	}
+
+	public function testGetPageIdFromNonExistentPersistentId(): void {
+		$this->assertNull( $this->repo->getPageIdFromPersistentId( 'non-existent' ) );
+	}
+
 }

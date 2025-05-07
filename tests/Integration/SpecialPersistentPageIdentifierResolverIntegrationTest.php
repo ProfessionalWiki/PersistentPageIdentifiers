@@ -18,7 +18,6 @@ use WikiPage;
 class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentPageIdentifiersIntegrationTest {
 
 	private PersistentPageIdentifiersRepo $repo;
-	private WikiPage $page;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -40,13 +39,13 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 	}
 
 	public function testExecuteWithValidIdRedirects(): void {
-		$this->page = $this->createPageWithText();
+		$page = $this->createPageWithText();
 
 		$resolver = $this->newSpecialPage();
-		$resolver->execute( $this->repo->getPersistentId( $this->page->getId() ) );
+		$resolver->execute( $this->repo->getPersistentId( $page->getId() ) );
 
 		$this->assertSame(
-			$this->page->getTitle()->getFullURL(),
+			$page->getTitle()->getFullURL(),
 			$resolver->getOutput()->getRedirect(),
 			'Should redirect to the page associated with the persistent ID.'
 		);

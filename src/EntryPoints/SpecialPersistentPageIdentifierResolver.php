@@ -6,6 +6,7 @@ namespace ProfessionalWiki\PersistentPageIdentifiers\EntryPoints;
 
 use FormSpecialPage;
 use ProfessionalWiki\PersistentPageIdentifiers\PersistentPageIdentifiersExtension;
+use ProfessionalWiki\PersistentPageIdentifiers\Presentation\PersistentPageIdFormatter;
 use Status;
 use Title;
 
@@ -17,26 +18,13 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 
 	public function execute( $subPage ): void {
 		// Redirect to the page immediately if it is valid
-		if ( $this->getRedirectUrl( $subPage ) !== null ) {
-			$this->getOutput()->redirect( $this->getRedirectUrl( $subPage ) );
+		$url = $this->getUrlFromPersistentId( $subPage );
+		if ( $url !== null ) {
+			$this->getOutput()->redirect( $url );
 			return;
 		}
 
 		parent::execute( $subPage );
-	}
-
-	private function getRedirectUrl( ?string $subPage ): ?string {
-		if ( $subPage === null || $subPage === '' ) {
-			return null;
-		}
-
-		$title = $this->getTitleFromPersistentId( $subPage );
-
-		if ( $title === null ) {
-			return null;
-		}
-
-		return $title->getFullURL();
 	}
 
 	protected function getFormFields(): array {
@@ -50,15 +38,12 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ): Status|bool {
-		$title = $this->getTitleFromPersistentId( $data['persistentpageidentifier'] );
-
-		if ( $title === null ) {
-			// Message: persistentpageidentifierresolver-not-exists
+		$url = $this->getUrlFromPersistentId( $data['persistentpageidentifier'] );
+		if ( $url === null ) {
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
 
-		$this->getOutput()->redirect( $title->getFullURL() );
-
+		$this->getOutput()->redirect( $url );
 		return true;
 	}
 
@@ -68,6 +53,20 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 
 	public function getGroupName(): string {
 		return 'redirects';
+	}
+
+	private function getUrlFromPersistentId( ?string $persistentId ): ?string {
+		if ( $persistentId === null || $persistentId === '' ) {
+			return null;
+		}
+
+		$title = $this->getTitleFromPersistentId( $this->extractId( $persistentId ) );
+
+		if ( $title === null || !$title->exists() ) {
+			return null;
+		}
+
+		return $title->getFullURL();
 	}
 
 	private function getTitleFromPersistentId( string $persistentId ): ?Title {
@@ -82,6 +81,10 @@ class SpecialPersistentPageIdentifierResolver extends FormSpecialPage {
 
 	private function getPageIdFromPersistentId( string $persistentId ): ?int {
 		return PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->getPageIdFromPersistentId( $persistentId );
+	}
+
+	private function extractId( string $input ): string {
+		return PersistentPageIdentifiersExtension::getInstance()->newPersistentPageIdFormatter()->extractId( $input );
 	}
 
 }

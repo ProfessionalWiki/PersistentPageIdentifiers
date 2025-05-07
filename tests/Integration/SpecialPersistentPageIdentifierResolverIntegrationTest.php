@@ -25,15 +25,6 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 		$this->repo = new DatabasePersistentPageIdentifiersRepo( $this->db );
 	}
 
-	protected function tearDown(): void {
-		// This is required because the pages persist into GenerateMissingIdentifiersTest in
-		// older MediaWiki/PHPUnit version. This is not needed for MW 1.42+.
-		if ( isset( $this->page ) ) {
-			$this->deletePage( $this->page );
-		}
-		parent::tearDown();
-	}
-
 	protected function newSpecialPage(): SpecialPersistentPageIdentifierResolver {
 		return new SpecialPersistentPageIdentifierResolver();
 	}

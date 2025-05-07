@@ -56,7 +56,7 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 		$resolver = $this->newSpecialPage();
 		// Call parent::execute first before attempting to execute with an invalid subpage
 		// This is only needed for the test
-		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
+		$resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( 'non-existent-id' );
 
 		$this->assertSame(
@@ -70,7 +70,7 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 		$resolver = $this->newSpecialPage();
 		// Call parent::execute first before attempting to execute with an empty subpage
 		// This is only needed for the test
-		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
+		$resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( '' );
 
 		$this->assertSame(
@@ -84,7 +84,7 @@ class SpecialPersistentPageIdentifierResolverIntegrationTest extends PersistentP
 		$resolver = $this->newSpecialPage();
 		// Call parent::execute first before attempting to execute with a null subpage
 		// This is only needed for the test
-		// $resolver->getContext()->setTitle( $resolver->getPageTitle() );
+		$resolver->getContext()->setTitle( $resolver->getPageTitle() );
 		$resolver->execute( null );
 
 		$this->assertSame(

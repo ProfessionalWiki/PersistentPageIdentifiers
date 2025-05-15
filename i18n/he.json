@@ -5,5 +5,7 @@
 		]
 	},
 	"persistentpageidentifiers-description": "מזהים ייחודיים יציבים עבור דפי הוויקי שלך. UUID v7 או PURIs, נגישים באמצעות פונקציית מפענח ו־REST API",
-	"persistentpageidentifiers-info-label": "מזהה דף קבוע"
+	"persistentpageidentifiers-info-label": "מזהה דף קבוע",
+	"persistentpageidentifierresolver": "הפניה באמצעות מזהה דף קבוע",
+	"persistentpageidentifierresolver-not-exists": "מזהה הדף הקבוע אינו קיים"
 }

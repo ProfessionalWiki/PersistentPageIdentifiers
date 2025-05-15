@@ -5,5 +5,7 @@
 		]
 	},
 	"persistentpageidentifiers-description": "Identificatores stabile e unic pro tu paginas wiki. UUID v7 o PURIs, accessibile per un function del analysator syntactic e per le API REST.",
-	"persistentpageidentifiers-info-label": "Identificator persistente de pagina"
+	"persistentpageidentifiers-info-label": "Identificator persistente de pagina",
+	"persistentpageidentifierresolver": "Redirection per identificator de pagina persistente",
+	"persistentpageidentifierresolver-not-exists": "Le identificator de pagina persistente non existe"
 }

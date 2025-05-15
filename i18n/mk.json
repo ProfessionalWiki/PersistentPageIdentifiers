@@ -5,5 +5,7 @@
 		]
 	},
 	"persistentpageidentifiers-description": "Устојчиви единствени назнаки за вашите викистраници. UUID v7 или PURI-ја, достапни преку расчленувачка функција и REST API",
-	"persistentpageidentifiers-info-label": "Постојана назнака на страница"
+	"persistentpageidentifiers-info-label": "Постојана назнака на страница",
+	"persistentpageidentifierresolver": "Пренасочување со Устојчива единствена назнака",
+	"persistentpageidentifierresolver-not-exists": "Устојчивата единствена назнака не постои"
 }

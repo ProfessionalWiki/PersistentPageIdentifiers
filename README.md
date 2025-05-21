@@ -53,7 +53,7 @@ these files with `make stan-baseline`.
 
 ## Release Notes
 
-### Version 1.1.0 - 2025-05-08
+### Version 1.1.0 - 2025-05-21
 
 * Added `Special:PersistentPageIdentifierResolver`
 

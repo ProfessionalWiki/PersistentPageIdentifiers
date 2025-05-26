@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"JLTRY",
 			"Mahabarata"
 		]
 	},
 	"persistentpageidentifiers-description": "Identifiants uniques stables pour vos pages wiki. UUID v7 ou PURI, accessibles via la fonction d'analyse et l'API REST",
-	"persistentpageidentifiers-info-label": "Identifiant de page persistant"
+	"persistentpageidentifiers-info-label": "Identifiant de page persistant",
+	"persistentpageidentifierresolver": "Redirection par identifiant de page persistant",
+	"persistentpageidentifierresolver-not-exists": "L'identifiant de page persistant n'existe pas"
 }

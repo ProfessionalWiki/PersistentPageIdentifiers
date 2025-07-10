@@ -33,12 +33,16 @@ class GenerateMissingIdentifiers extends Maintenance {
 
 			$this->output( "Generating persistent ids for batch of $batchSize pages\n" );
 
-			$this->savePersistentIds( $pageIds, $this->generateBulkPersistentIds( $batchSize ) );
+			$idMap = array_combine( $pageIds, $this->generateBulkPersistentIds( $batchSize ) );
+
+			$this->output( 'Generated batch of persistent IDs: ' . json_encode( $idMap ) . "\n" );
+
+			$this->savePersistentIds( $idMap );
 
 			$generatedIdsCount += $batchSize;
 		}
 
-		$this->output( "Generated $generatedIdsCount persistent IDs\n" );
+		$this->output( "Done. Generated $generatedIdsCount persistent IDs\n" );
 	}
 
 	/**
@@ -60,10 +64,8 @@ class GenerateMissingIdentifiers extends Maintenance {
 		);
 	}
 
-	private function savePersistentIds( array $pageIds, array $persistentIds ): void {
-		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds(
-			array_combine( $pageIds, $persistentIds )
-		);
+	private function savePersistentIds( array $idMap ): void {
+		PersistentPageIdentifiersExtension::getInstance()->getPersistentPageIdentifiersRepo()->savePersistentIds( $idMap );
 	}
 
 }

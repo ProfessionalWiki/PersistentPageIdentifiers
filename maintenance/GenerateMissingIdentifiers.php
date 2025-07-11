@@ -31,7 +31,7 @@ class GenerateMissingIdentifiers extends Maintenance {
 				break;
 			}
 
-			$this->output( "Generating persistent ids for batch of $batchSize pages\n" );
+			$this->output( "Generating persistent IDs for batch of $batchSize pages\n" );
 
 			$idMap = array_combine( $pageIds, $this->generateBulkPersistentIds( $batchSize ) );
 

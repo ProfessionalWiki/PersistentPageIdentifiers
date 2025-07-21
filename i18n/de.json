@@ -1,9 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"*surak*",
 			"Kghbln"
 		]
 	},
 	"persistentpageidentifiers-description": "Ermöglicht das Zuordnen permanenter Kennungen zu Seiten (UUID v7 oder PURI), die mit einer Parserfunktion oder über die REST-API erschlossen werden können",
-	"persistentpageidentifiers-info-label": "Permanente Seitenkennung"
+	"persistentpageidentifiers-info-label": "Permanente Seitenkennung",
+	"persistentpageidentifierresolver": "Weiterleitung durch die dauerhafte Seitenkennung",
+	"persistentpageidentifierresolver-not-exists": "keine dauerhafte Seitenkennung vorhanden"
 }

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardoaddad"
+		]
+	},
+	"persistentpageidentifiers-description": "Identificadores únicos estáveis para suas páginas wiki. UUID v7 ou PURIs, acessíveis por meio da função analisadora e da API REST.",
+	"persistentpageidentifiers-info-label": "Identificador de página persistente",
+	"persistentpageidentifierresolver": "Redirecionar por identificador de página persistente",
+	"persistentpageidentifierresolver-not-exists": "O identificador de página persistente não existe"
+}

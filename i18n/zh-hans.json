@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Chimes"
+			"Chimes",
+			"Peterxy12"
 		]
 	},
 	"persistentpageidentifiers-description": "稳定的唯一标识符用于您的维基页面。UUID v7 或 PURIs，可通过解析器函数和 REST API 访问",
-	"persistentpageidentifiers-info-label": "持久页面标识符"
+	"persistentpageidentifiers-info-label": "持久页面标识符",
+	"persistentpageidentifierresolver": "通过持久页面标识符重定向"
 }

@@ -4,6 +4,7 @@
 			"Умар"
 		]
 	},
+	"persistentpageidentifiers-description": "Стабилан шатайпа идентификаторш хьан вики агӀонашна. UUID v7 йа PURIs, кхача йиш йу парсеран функцица а, REST API-ца а",
 	"persistentpageidentifiers-info-label": "АгӀонан гуттаренна йолу идентификатор",
 	"persistentpageidentifierresolver": "Гуттара йолу агӀонан идентификаторца дӀасахьажорг",
 	"persistentpageidentifierresolver-not-exists": "Гуттара а лаьтташ йолу агӀонан идентификатор йац"

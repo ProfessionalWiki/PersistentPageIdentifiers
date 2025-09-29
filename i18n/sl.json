@@ -5,5 +5,7 @@
 		]
 	},
 	"persistentpageidentifiers-description": "Stabilni edinstveni identifikatorjiza vaše strani viki. UUID v7 ali PURI, dostopni s funkcijo razčlenjevalnika in API-ja REST",
-	"persistentpageidentifiers-info-label": "Trajni identifikator strani"
+	"persistentpageidentifiers-info-label": "Trajni identifikator strani",
+	"persistentpageidentifierresolver": "Preusmeritev s trajnim identifikatorjem strani",
+	"persistentpageidentifierresolver-not-exists": "Trajni identifikator strani ne obstaja"
 }

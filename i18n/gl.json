@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"persistentpageidentifiers-description": "Identificadores únicos estables para as páxinas do wiki. UUID v7 ou PURI, accesibles mediante funcións de análise sintáctica e API REST",
+	"persistentpageidentifiers-info-label": "Identificador de páxina persistente",
+	"persistentpageidentifierresolver": "Redirección por identificador de páxina persistente",
+	"persistentpageidentifierresolver-not-exists": "O identificador de páxina persistente non existe"
+}

@@ -4,8 +4,8 @@
 			"Bjankuloski06"
 		]
 	},
-	"persistentpageidentifiers-description": "Устојчиви единствени назнаки за вашите викистраници. UUID v7 или PURI-ја, достапни преку расчленувачка функција и REST API",
+	"persistentpageidentifiers-description": "Постојани единствени назнаки за вашите викистраници. UUID v7 или PURI-ја, достапни преку расчленувачка функција и REST API",
 	"persistentpageidentifiers-info-label": "Постојана назнака на страница",
-	"persistentpageidentifierresolver": "Пренасочување со Устојчива единствена назнака",
-	"persistentpageidentifierresolver-not-exists": "Устојчивата единствена назнака не постои"
+	"persistentpageidentifierresolver": "Пренасочување со Постојана единствена назнака",
+	"persistentpageidentifierresolver-not-exists": "Постојаната единствена назнака не постои"
 }

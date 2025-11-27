@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"persistentpageidentifiers-description": "為您的 wiki 頁面提供穩定、唯一的識別碼（UUID v7 或 PURI）。可透過解析器函式和 REST API 存取。",
+	"persistentpageidentifiers-info-label": "持久性頁面識別碼",
+	"persistentpageidentifierresolver": "透過持久性頁面識別碼進行重新導向",
+	"persistentpageidentifierresolver-not-exists": "持久性頁面識別碼不存在"
+}

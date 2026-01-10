@@ -37,6 +37,7 @@ class DatabasePersistentPageIdentifiersRepo implements PersistentPageIdentifiers
 		$result = $this->database->newSelectQueryBuilder()
 			->select( [ 'p.page_id', 'ppi.persistent_id' ] )
 			->from( 'page', 'p' )
+			// Join is necessary to exclude pages deleted from the `page` table, but not `persistent_page_ids`.
 			->leftJoin( 'persistent_page_ids', 'ppi', 'p.page_id = ppi.page_id' )
 			->where( [ 'p.page_id' => $pageIds ] )
 			->orderBy( 'p.page_id' )

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"HakanIST"
+		]
+	},
+	"persistentpageidentifiers-description": "Viki sayfalarınız için kararlı benzersiz tanımlayıcılar. UUID v7 veya PURI'ler, ayrıştırıcı işlev ve API aracılığıyla erişilebilir.",
+	"persistentpageidentifiers-info-label": "Kalıcı sayfa tanımlayıcısı",
+	"persistentpageidentifierresolver": "Kalıcı Sayfa Tanımlayıcısına Göre Yönlendir",
+	"persistentpageidentifierresolver-not-exists": "Kalıcı Sayfa Tanımlayıcısı mevcut değil"
+}

@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"persistentpageidentifiers-description": "ستاسو د ويکي مخونو لپاره يو مستحکم بې‌ساری پېژندونکی. UUID v7 يا PURIs د ټوټه‌کوونکي کړنچار او REST API له لارې د لاسرسي وړ",
+	"persistentpageidentifiers-info-label": "دوامداره مخ پېژندونکی",
+	"persistentpageidentifierresolver": "د دوامداره مخ پېژندونکي له خوا مخگرځ",
+	"persistentpageidentifierresolver-not-exists": "دوامداره مخ پېژندونکی شتون نه لري"
+}

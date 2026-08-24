@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"persistentpageidentifiers-description": "Stabilné jedinečné identifikátory pre vaše wiki stránky. UUID v7 alebo PURI, dostupné cez funkciu syntaktického analyzátora a REST API",
+	"persistentpageidentifiers-info-label": "Trvalý identifikátor stránky",
+	"persistentpageidentifierresolver": "Presmerovanie podľa trvalého identifikátora stránky",
+	"persistentpageidentifierresolver-not-exists": "Trvalý identifikátor stránky neexistuje"
+}
